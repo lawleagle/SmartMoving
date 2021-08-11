@@ -82,6 +82,12 @@ processResources {
 }
 
 jar {
+	manifest {
+		attributes (
+			'FMLCorePluginContainsFMLMod': 'true',
+			'FMLCorePlugin': 'net.smart.core.SmartCorePlugin',
+		)
+	}
     configurations.embedded.each { dep ->
         from(project.zipTree(dep)) {
             exclude 'META-INF', 'META-INF/**'
