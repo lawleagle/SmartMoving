@@ -33,7 +33,7 @@ public class RenderPlayer extends net.minecraft.client.renderer.entity.RenderPla
 	@Override
 	public IModelPlayer createModel(ModelBiped existing, float f)
 	{
-		return new ModelPlayer(f);
+		return new ModelPlayer(f, existing);
 	}
 
 	@Override

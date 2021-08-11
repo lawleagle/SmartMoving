@@ -26,11 +26,21 @@ public class ModelPlayer extends ModelBiped implements IModelPlayer
 {
 	private final SmartRenderModel model;
 
-	public ModelPlayer(float f)
-	{
-		super(f);
+	// preserved for backwards compatibility
+	/*@Deprecated
+    public ModelPlayer(float f)
+    {
+        super(f);
 
-		model = new SmartRenderModel(this, this, bipedBody, bipedCloak, bipedHead, bipedEars, bipedHeadwear, bipedRightArm, bipedLeftArm, bipedRightLeg, bipedLeftLeg);
+        model = new SmartRenderModel(this, this, bipedBody, bipedCloak, bipedHead, bipedEars, bipedHeadwear, bipedRightArm, bipedLeftArm, bipedRightLeg, bipedLeftLeg);
+    }*/
+	
+	public ModelPlayer(float f, ModelBiped existing)
+	{
+	    this.textureWidth = existing.textureWidth;
+        this.textureHeight = existing.textureHeight;
+
+		model = new SmartRenderModel(this, this, existing.bipedBody, existing.bipedCloak, existing.bipedHead, existing.bipedEars, existing.bipedHeadwear, existing.bipedRightArm, existing.bipedLeftArm, existing.bipedRightLeg, existing.bipedLeftLeg);
 	}
 
 	@Override
