@@ -1,0 +1,1026 @@
+== Smart Moving 15.6 ==
++ added license information
++ improved core code simplicity and robustness
+
+== Smart Moving 15.5 ==
++ added compatibility to minecraft forge version "10.13.3.1395-1710ls"
+
+== Smart Moving 15.4 ==
++ merged SmartCore mod into SmartMoving mod
++ fixed support for Carpenter’s Blocks ladders
++ fixed overly fast limb movement of remote players
++ fixed placing blocks at chests by pressing the sneak button while not standard sneaking
++ added dependency to PlayerAPI core 1.3 or higher
+
+== Smart Moving 15.3 ==
++ improved handling of enhanced third party armor models
+
+== Smart Moving 15.2 ==
++ removed proprietary sprint button
++ added categories to remaining buttons
+
+== Smart Moving 15.1 ==
++ upgraded to Minecraft version 1.7.10
+
+== Smart Moving 15.0.1 ==
++ fixed support for Carpenter’s Blocks ladders
+
+== Smart Moving 15.0 ==
++ removed ModLoader support
++ removed Bukkit support
++ removed Standalone support
++ splitted up Smart Moving to multiple mods
++ upgraded to Minecraft version 1.7.2
+
+== Smart Moving 14.6.1 ==
++ fixed support for Carpenter’s Blocks ladders
+
+== Smart Moving 14.6 ==
++ added support for Carpenter’s Blocks ladders
+
+== Smart Moving 14.5 ==
++ upgraded to Minecraft version 1.6.4
+
+== Smart Moving 14.4.1 ==
++ fixed climbing over fences
+
+== Smart Moving 14.4 ==
++ applied code changes suggested by "kotoroshinoto" at "minecraftforum.net" which will probably fix a lot of climbing compatibility problems
+
+== Smart Moving 14.3 ==
++ fixed player disconnect when ceiling climbing on Smart Moving servers with "allow-flight=false"
++ fixed name tag position while small
++ fixed viewpoint perspective fading
++ fixed sprinting speed
+
+== Smart Moving 14.2 ==
++ fixed control name/code converters for mouse buttons
++ updated bukkit installation package to CraftBukkit 1.6.2-R0.1
+
+== Smart Moving 14.1 ==
++ improved Minecraft Forge jump event compatibility
++ upgraded to Minecraft version 1.6.2
+
+== Smart Moving 14.0 ==
++ improved rendering system to support additional Render Player API models
++ upgraded to Render Player API 1.2 or higher
+
+== Smart Moving 13.9.1 ==
++ fixed chat line disappearing when the exhaustion bar is displayed
+
+== Smart Moving 13.9 ==
++ changed the Minecraft Forge mod ids
++ upgraded to Minecraft version 1.5.2
+
+== Smart Moving 13.8 ==
++ improved Minecraft Forge integration
++ added support for Chupmacabre's Ladder Kit mod
+
+== Smart Moving 13.7 ==
++ updated bukkit installation package to CraftBukkit 1.5.1-R0.1
+
+== Smart Moving 13.6 ==
++ improved cobweb handling
++ improved animations of other SMP players
++ added dutch language file
+
+== Smart Moving 13.5 ==
++ added basic climbing support for unknown fence or wall blocks
++ added Ropes+ rope sliding animation
+
+== Smart Moving 13.4 ==
++ fixed hunger decrease when poisoned
++ upgraded to Minecraft version 1.5.1
+
+== Smart Moving 13.3 ==
++ added third person bow aiming animation for all moves
++ fixed rendering of arrows sticking in player
+
+== Smart Moving 13.2 ==
++ merged Standalone client and server installation packages
++ upgraded to Minecraft version 1.5
+
+== Smart Moving 13.1 ==
++ merged Minecraft Forge client and server installation packages
++ fixed exhaustion loss while riding another entity
++ fixed sprinting to walking transition
++ fixed invisible key binding management
++ updated russian language file
+
+== Smart Moving 13.0 ==
++ added environment verification
++ added player specific server configuration management
++ added player specific server speed management
++ fixed sound creation
+
+== Smart Moving 12.5 ==
++ fixed swimming from/to standing transitions when climbing or crawling is disabled
++ fixed key binding options management in non-MacroKeybind and non-MinecraftForge environments
+
+== Smart Moving 12.4 ==
++ added optional horizontally aligned flying and diving controls
++ removed option dependent options/controls menu button removal
++ removed option dependent options/controls menu sneak button naming
++ fixed grab button behavior when climbing is disabled
++ fixed rendering while riding a minecart
++ fixed sliding incompatibility with the ModularPowersuits mod
++ made ModLoader or Minecraft Forge client package depend on PlayerAPI universal 1.6 or higher
+
+== Smart Moving 12.3 ==
++ added support for MCPC+
+
+== Smart Moving 12.2 ==
++ fixed key collisions between game and chat/menu control
++ updated bukkit installation package to CraftBukkit 1.4.7-R1.0
+
+== Smart Moving 12.1 ==
++ updated bukkit installation package to CraftBukkit 1.4.7-R0.1
+
+== Smart Moving 12.0 ==
++ added key binding options for configuration and speed buttons when appropriate
++ removed chat help messages when corresponding key binding options are available
++ restored default speed while Smart Moving is disabled
++ restored sneaking animation while flying while Smart Moving is disabled
++ restricted default in-game speed manipulation to creative mode
++ upgraded to Minecraft version 1.4.7
+
+== Smart Moving 11.12.1 ==
++ fixed rendering of arrows sticking in player
++ changed name of ModLoader client package
+
+== Smart Moving 11.12 ==
++ added unknown ladder block detection
++ fixed hunger increase while standing still
++ upgraded to Player API universal 1.3 or higher
+
+== Smart Moving 11.11 ==
++ upgraded to Minecraft version 1.4.6
++ fixed Minecraft Forge server installation package
+
+== Smart Moving 11.10 ==
++ updated bukkit installation package to CraftBukkit 1.4.5-R1.0
++ added cobblestone wall edge climbing
++ added native user interface disabling
++ added jump charge interface
++ improved exhaustion interface
+
+== Smart Moving 11.9 ==
++ restored Ropes+ compatibility
++ fixed speed and jump boost potions
+
+== Smart Moving 11.8 ==
++ fixed doubled hunger increase
++ fixed rendering of arrows sticking in player
++ fixed in-game speed manipulation for various smart moves
+
+== Smart Moving 11.7 ==
++ upgraded to Minecraft version 1.4.5
++ fixed standalone server installation package
+
+== Smart Moving 11.6 ==
++ upgraded to Minecraft version 1.4.4
++ added cobblestone wall climbing
+
+== Smart Moving 11.5 ==
++ changed default wall jump trigger from single to double click
++ optionalized triggers for climb back up/head jumping
+
+== Smart Moving 11.4 ==
++ upgraded to Minecraft version 1.4.2
+
+== Smart Moving 11.3 ==
++ disabled wall jumping while swimming, diving and flying
++ added climb back jumping while climbing on vines attached to a block
++ fixed sprint jumping
+
+== Smart Moving 11.2 ==
++ added wall jumping
++ switched triggers of climb back up/head jumping
++ changed climb jump exhaustion system
++ fixed client chat message overwriting
++ fixed world specific server packet sending
+
+== Smart Moving 11.1 ==
++ fixed option mouse button name resolving
++ removed crawling on mounting a boat in shallow water
++ fixed sending complex options from server to client
+
+== Smart Moving 11.0 ==
++ separated improved player model from smart moving render code
++ upgraded ModLoader client package to Render Player API 1.3 or higher
+
+== Smart Moving 10.6.1 ==
++ fixed first person hand rendering
+
+== Smart Moving 10.6 ==
++ refactored player model
++ fixed double half slab detection
++ added optional flying close to the ground
++ updated bukkit installation package to CraftBukkit 1.3.2-R1.0
+
+== Smart Moving 10.5 ==
++ fixed key collisions between game and chat/menu control
++ fixed in-game speed manipulation options
+
+== Smart Moving 10.4 ==
++ fixed chat message options
++ updated russian language file
++ updated brazilian language file
+
+== Smart Moving 10.3 ==
++ added in-game speed manipulation
++ improved chat message displaying
++ fixed hunger management
++ upgraded ModLoader client package to Player API client 1.3 or higher
++ upgraded Standard server packages to Player API server 1.4 or higher
++ upgraded Bukkit server package to Player API bukkit 1.1 or higher
+
+== Smart Moving 10.2 ==
++ removed vine climbing with back to far vines
++ added default "grab" and "sprint" key options
++ added brazilian language file
+
+== Smart Moving 10.1.1 ==
++ fixed entity collision crashes while being small sized
+
+== Smart Moving 10.1 ==
++ fixed item pickup crashes while being small sized
++ updated russian language file
+
+== Smart Moving 10.0 ==
++ relocated classes from "net/minecraft/move" to "net/smart/moving"
++ relocated resources from "lang/move" and "gui/move" to "net/smart/resources"
++ added in-game global configuration toggling
+
+== Smart Moving 9.17 ==
++ fixed Minecraft Forge server installation package
++ fixed frontal third person view swinging animation
+
+== Smart Moving 9.16 ==
++ improved item pickup while being small sized
++ fixed diving through deep 1x1 holes
+
+== Smart Moving 9.15 ==
++ added separate creative server configuration key option
++ added separate adventure configuration options
++ fixed packet redistribution bug
+
+== Smart Moving 9.14 ==
++ added installation package for CraftBukkit 1.3.1-R2.0
+
+== Smart Moving 9.13.1 ==
++ fixed side jumping
+
+== Smart Moving 9.13 ==
++ added support for Better Blocks & Items stairs
++ added support for Metal Rods iron trapdoors
++ stopped exhaustion bar drawing while Smart Moving is disabled
++ fixed ceiling climbing startup speed
++ improved climbing animation realism
+
+== Smart Moving 9.12 ==
++ added exhaustion system interface
++ added free climbing support for wooden half slabs
++ fixed standalone item placement
++ fixed server standalone small size suffocating
+
+== Smart Moving 9.11 ==
++ upgraded to Minecraft version 1.3.2
+
+== Smart Moving 9.10 ==
++ added support for Better Blocks & Items fences
++ fixed jumping while running while Smart Moving is disabled
+
+== Smart Moving 9.9 ==
++ added modloadermp server package
++ fixed SMP small movement suffocation bug
+
+== Smart Moving 9.8 ==
++ added standalone server package
+
+== Smart Moving 9.7.1 ==
++ fixed standalone installation packages
+
+== Smart Moving 9.7 ==
++ added ModLoader client package
+
+== Smart Moving 9.6 ==
++ upgraded to Minecraft version 1.3.1
+
+== Smart Moving 9.5 ==
++ added ceiling climbing block configuration option
++ officially upgraded to bukkit 5.0
+
+== Smart Moving 9.4.4 ==
++ fixed climbing over lava on bukkit server
+
+== Smart Moving 9.4.3 ==
++ fixed GUI coloring while enchanted items are present
+
+== Smart Moving 9.4.2 ==
++ improved robustness of packet receiving
+
+== Smart Moving 9.4.1 ==
++ fixed standard lava movement
+
+== Smart Moving 9.4 ==
++ fixed name tag position while small
++ added name tag hiding while crawling
++ added optional name tag showing while standard sneaking
++ added optional no crawling over edges
++ added support for CraftBukkit++
+
+== Smart Moving 9.3 ==
++ improved reading of toggle key name
++ added accessors for proprietary model renderers
++ added model wide children rendering
++ fixed standalone installation packages
+
+== Smart Moving 9.2 ==
++ added support for child model renderers to proprietary model renderer
++ changed internal render registration for improved third party support
++ fixed Render Player API management when running with Minecraft Forge
++ officially upgraded to bukkit 4.0
+
+== Smart Moving 9.1 ==
++ fixed serious render problem in the modloader installation package
++ fixed climbing solid detection for Circuit Cubes slime blocks
+
+== Smart Moving 9.0 ==
++ added support for Render Player API
++ improved jumping out of water
++ fixed configuration toggle persistence
++ fixed water depth detection for swimming in shallow water
++ fixed diving to crawling next to water
++ fixed diving to crawling below water
++ fixed jumping out of water when headed to small hole right above water level
++ fixed swimming to crawling in small hole right above water level
++ fixed swimming to crawling in shallow water
++ fixed crawling into shallow water
+
+
+== Smart Moving 8.8 ==
++ improved liquid detection for swimming
++ added lava swimming and lava diving in creative
++ added item usage speed penalties for all movements
++ disabled sprinting while using an item
++ fixed post inventory head rotation
+
+== Smart Moving 8.7 ==
++ attenuated bukkit teleport deactivation while being small
++ updated russian language file
+
+== Smart Moving 8.6 ==
++ upgraded Bukkit server package to Player API bukkit 1.3 or higher
++ fixed disable Smart Moving via server configuration crash
++ added support for bukkit server "reload" command
+
+== Smart Moving 8.5 ==
++ improved architecture of server packages
++ added russian language file
+
+== Smart Moving 8.4 ==
++ added server installation package for all bukkit server types
++ removed server installation package for MC Port Central bukkit server
++ fixed crawl falling without damage bug
++ fixed perspective while sprinting up stairs
++ added fading for viewpoint perspective changes
+
+== Smart Moving 8.3 ==
++ fixed head jumping, crawling or sliding into lava bug
++ fixed crawl falling into water bug
++ fixed flying to sliding transition
+
+== Smart Moving 8.2 ==
++ added support for Minecraft Forge server
+
+== Smart Moving 8.1 ==
++ fixed climbing into Ropes+ grappling hook rope
++ fixed climb back jump rotation remote animation
++ added Ropes+ grappling hook back rope climbing
++ added sliding to head jumping transition
++ improved flying to walking transition
+
+== Smart Moving 8.0 ==
++ moved client-server communication from ModLoaderMp to ModLoader
++ removed client installation package for ModLoaderMp
++ added support for MC Port Central bukkit server
++ added support for Ropes+ for MinecraftForge
++ fixed top half block climbing
+
+== Smart Moving 7.8 ==
++ added climb up jumping
++ added climb back jumping
++ added climb back head jumping
+
+== Smart Moving 7.7.1 ==
++ fixed crashes of client installation packages
+
+== Smart Moving 7.7 ==
++ fixed pressure plate climbing
++ added client side support for SBC
+
+== Smart Moving 7.6 ==
++ upgraded to Minecraft version 1.2.5
+
+== Smart Moving 7.5 ==
++ added support for MC Port Central bukkit server
+
+== Smart Moving 7.4 ==
++ added support for ModLoaderMp client & server
+
+== Smart Moving 7.3 ==
++ upgraded to Minecraft version 1.2.4
+
+== Smart Moving 7.2 ==
++ improved door climbing
+
+== Smart Moving 7.1 ==
++ fixed bed climbing
++ fixed flying into lava bug
++ fixed crawling when free climbing is disabled
++ fixed client side server configuration overwrite for options "move.climb.free", "move.dive" and "move.swim"
++ made vine auto grabbing depend on vine orientation and remote block solidness
++ disabled charged and slide jump exhaustion on default "Easy" configuration
++ switched default value of option "move.climb.free.base.vine"
++ removed climbing onto compact stairs in walking direction
++ improved upside down full stair climbing
+
+== Smart Moving 7.0.1 ==
++ fixed head wear rendering
++ fixed inventory player rendering
+
+== Smart Moving 7.0 ==
++ added standard vine climbing
++ added vine upwards climbing
++ upgraded to ModLoaderMp 1.2.3 v3
++ added total free ladder climbing option
++ added total free vine climbing option
++ fixed creative initial flying bug
+
+== Smart Moving 6.14 ==
++ upgraded to Minecraft version 1.2.3
+
+== Smart Moving 6.13 ==
++ added initial options help message
++ added third person hand animation for all moves
++ fixed crawling to flying transition
+
+== Smart Moving 6.12 ==
++ officially updated to Craftbukkit 1.1-R4
++ upgraded Bukkit server package to Player API bukkit 1.3 or higher
++ improved Ropes+ rope climbing
++ fixed Ropes+ grappling hook rope climbing
++ fixed climbing animation for other SMP players
++ fixed small movement to sleeping transitions
++ fixed sleeping animation
+
+== Smart Moving 6.11 ==
++ fixed falling through ground when jumping
+
+== Smart Moving 6.10 ==
++ officially updated to Craftbukkit 1.1-R3
++ upgraded Bukkit server package to Player API bukkit 1.2 or higher
++ disabled sprint jump to sliding transition
++ disabled small levitation in disabled mode
++ fixed head jump charging while sprint falling
++ fixed inventory animation
+
+== Smart Moving 6.9 ==
++ added Bukkit-ModLoaderMp support
++ fixed holding while standard ladder climbing
++ improved packet sending code robustness
++ improved server net handler replacement robustness
++ fixed inventory animation
+
+== Smart Moving 6.8 ==
++ fixed climbing open trap doors while on a ladder
++ fixed many to crawling transitions when crawl toggle is enabled
++ moved sneak/crawl toggle options to the client side only options
++ fixed third person item usage rendering while standing/sneaking/walking
++ adapted proprietary sneaking animation to standard sneaking animation
++ fixed multiplayer item placement while being small sized
++ fixed arm model rotation while diving
++ improved localization system
+
+== Smart Moving 6.7 ==
++ adapted to Minecraft 1.1 fence gate collision box
++ fixed crawling to flying transition
++ persisted client side server configuration across world changes
+
+== Smart Moving 6.6 ==
++ upgraded to Minecraft version 1.1
+
+== Smart Moving 6.5 ==
++ fixed back jump configuration bug
++ fixed client side server configuration overwrite bug
+
+== Smart Moving 6.4 ==
++ fixed climb crawling while crawl climbing stand up bug
++ fixed sliding to climb crawling bug
++ added separate charged jump exhaustion
++ added separate slide jump exhaustion
+
+== Smart Moving 6.3 ==
++ eased packet corruption bug
++ added base exhaustion gain factor
++ fixed sliding into water bug
++ fixed climbing over lava
++ simplified jump options
++ improved options file
+
+== Smart Moving 6.2 ==
++ upgraded ModLoader client packages to Player API client 1.5 or higher
++ stopped replacing instances of "GuiIngame" at runtime
++ changed default "sneaking while swimming or diving in deep water" behavior
++ fixed non exhaustive jump oscillation while sprinting
++ fixed crawling and sliding persistence while falling
++ fixed icons covered by chat text
++ improved sliding particle emission
++ added swimming particle emission
+
+== Smart Moving 6.1.1 ==
++ fixed a stupid server bug in the ModLoaderMp server package that crashed the game
++ added ModLoaderMp for Bukkit installation sources
+
+== Smart Moving 6.1 ==
++ added Bukkit-ModLoaderMp support
++ fixed option "move.climb.ladder"
++ fixed option "move.climb.free"
++ fixed option "move.swim"
++ fixed option "move.dive"
+
+== Smart Moving 6.0 ==
++ added server configurations
++ added multiple option configurations
++ added separate communication protocol versions
++ removed fast water walking while grabbing
++ fixed lava player height reduction
++ fixed Aether class cast crash
+
+== Smart Moving 5.10 ==
++ added side & back jump double click speed option
++ reduced default side & back jump double click speed
++ fixed exhaustive sprint oscillation when sprinting above ground
++ fixed climbing while standing in shallow water
++ added diving into 1x1 holes while in shallow water
+
+== Smart Moving 5.9 ==
++ upgraded ModLoaderMp client package to Player API client 1.3 or higher
++ upgraded ModLoaderMp server package to Player API server 1.6 or higher
++ fixed climb crawling into 1x1 hole while standing with solid above head
++ fixed SMP spawning in 1x1 holes
+
+== Smart Moving 5.8 ==
++ upgraded ModLoaderMp server package to Player API server 1.5 or higher
++ improved side & back jump implementation
++ reduced jump height and length options set
++ added exhaustion deplete and restore forecasts
++ reduced movements while chatting
++ fixed SMP crawling auto stand up damage
++ fixed endless ice sliding
+
+== Smart Moving 5.7 ==
++ reduced ceiling climbing strictness
++ improved hunger and exhaustion management
++ added nether fence climbing
++ added side and back jumps
+
+== Smart Moving 5.6 ==
++ upgraded ModLoader client packages to Player API client 1.2 or higher
++ added SMP sprint slashes for smart sprinting on ground
++ added optional diving down instead of diving slow on sneak
++ added optional swimming down instead of swimming slow on sneak
++ added hunger management for all movement types and speeds
++ reduced charged jump cancel happiness, made old behavior optional
++ added exhaustion management for climbing and ceiling climbing
+
+== Smart Moving 5.5.1 ==
++ fixed automatic generation of configuration file
+
+== Smart Moving 5.5 ==
++ fixed forward jumping to standard flying transition
++ fixed forward jumping to standard swimming transition
++ added optional small movement for standard flying
++ added exhaustion management for standard sprinting
++ added exhaustion loss options for sprinting, standard sprinting and sneaking
++ improved calculation of maximum exhaustion
++ added option default value upgrade system
+
+== Smart Moving 5.4 ==
++ added sprint slashes for smart sprinting on ground
++ made closed trapdoors ceiling climbable
++ improved glass and iron fence climbing
++ fixed climbing onto front stairs
++ fixed fence climbing
+
+== Smart Moving 5.3.1 ==
++ fixed multi player climbing bug
+
+== Smart Moving 5.3 ==
++ added support for ModLoaderMp client & server
++ made ModLoaderMp server package depend on PlayerAPI server 1.3 or higher
++ upgraded ModLoader client packages to Player API client 1.1 or higher
++ partially fixed fence climbing
++ cleaned up readme file
+
+== Smart Moving 5.2 ==
++ upgraded to Minecraft version 1.0.0
+
+== Smart Moving 5.1 ==
++ restored Ropes+ climbing on disabled Smart Moving
+
+== Smart Moving 5.0.1 ==
++ fixed first person hand rendering bug
++ fixed player head wear rendering bug
++ fixed player ears rendering bug
++ fixed player cape rendering bug
+
+== Smart Moving 5.0 ==
++ added automatic generation of configuration file "smart_moving_options.txt"
++ added swim and dive speed options
++ added jump, forward jump and slide control movement speed options
++ improved horizontal roation animation
++ improved forward jumping animation
++ disabled flying to sliding transition when not grabbing
++ fixed SPC's SSP standard flying
++ fixed jumping while sneaking in water
++ fixed diving up while sneaking
++ fixed jumping while forward jumping after running
++ fixed perspective changes when sprinting downhill
+
+== Smart Moving 4.14 ==
++ improved sliding animation
++ added sprinting to sliding transition
++ disabled forward jumping to climbing transition
++ disabled jumping while sliding
++ fixed finite liquid ocean water bug
++ fixed unintentional jumping when running down while jump charging
++ fixed forward jump charging sprint speed while standard sprinting
++ fixed sliding to crawl climbing transition
+
+== Smart Moving 4.13 ==
++ added forward jumping
++ added sliding
+
+== Smart Moving 4.12 ==
++ fixed Ropes+ grappling hook climbing
++ fixed Ropes+ rope unwinding speed
++ readded support for Finite Liquid mod
++ fixed charged jumping behavior
+
+== Smart Moving 4.11 ==
++ changed Bukkit-ItemCraft support to ItemCraft 1.8.1v2
++ added optional support for Ropes+ ropes
+
+== Smart Moving 4.10 ==
++ fixed strafing when diving/flying up/down
++ added sprinting to all swimming/diving/flying directions
++ fixed sprint diving against ground exhaustion bug
++ fixed diving levitation animation
+
+== Smart Moving 4.9 ==
++ reduced alternative flying player height
++ fixed SPC flying jump exhaustion bug
++ added flying animations to SPC flying
+
+== Smart Moving 4.8 ==
++ fixed climb start when falling damage bug
++ added climb start when falling options
+
+== Smart Moving 4.7.2 ==
++ fixed craft GUI closing error of both Bukkit packages
+
+== Smart Moving 4.7.1 ==
++ fixed Better than Wolves climbing crashes for blocks without names
+
+== Smart Moving 4.7 ==
++ added support for Better than Wolves ropes and anchors
++ disabled sprinting exhaustion without movement for climbing
++ disabled sprinting for ceiling climbing during horizontal collisions
++ disabled sprinting for flying during collisions
+
+== Smart Moving 4.6 ==
++ fixed RedPower wire cover climbing bug
++ fixed some cloak render problems
++ improved decompilability
+
+== Smart Moving 4.5 ==
++ added Bukkit-ItemCraft support
++ added Bukkit-ModLoaderMp support
+
+== Smart Moving 4.4 ==
++ fixed Standalone (mc-hw-np) flying and falling crashes
++ fixed ModLoaderMp SMP climbing down ground arrival damage
+
+== Smart Moving 4.3 ==
++ added ceiling climbing for iron fences
++ fixed alternative flying backwards
+
+== Smart Moving 4.2 ==
++ added alternative flying
++ added flying and falling animations for other SMP players
++ added sprinting for standard flying
++ fixed standard flying down animation
++ fixed standard flying speed
+
+== Smart Moving 4.1 ==
++ fixed SMP climbing server fall damage
++ added item usage slow down options
+
+== Smart Moving 4.0 ==
++ added backward swimming
++ added backward diving
++ added climbing for iron fence
++ added climbing for thin glass
++ added climbing for fence gates
++ added climbing for brick stairs
++ added climbing for stone brick stairs
++ fixed crawling animation of other SMP players
+
+== Smart Moving 3.11 ==
++ added optional flying animation
++ added optional falling animation
+
+== Smart Moving 3.10 ==
++ merged standard sprinting and smart sprinting
++ added standard sprinting particles and perspective to smart sprinting
++ added infinite smart sprinting in creative mode
++ added smart sprinting perspective option
++ added standard sprinting options
++ added optional hunger gain on exhaustion loss
+
+== Smart Moving 3.9 ==
++ fixed flying in creative mode
++ fixed item usage slowdown
+
+== Smart Moving 3.8 ==
++ fixed climbing from closed trapdoors
++ fixed default sprinting speed
+
+== Smart Moving 3.7 ==
++ fixed climbing fall damage system error
++ fixed mouse button input system error
++ fixed first person hand and item rendering
+
+== Smart Moving 3.6 ==
++ upgraded to Minecraft version 1.8.1
+
+== Smart Moving 3.5 ==
++ fixed icon drawing while sleeping
++ fixed first person hand rendering
++ fixed swimming in BuildCraft oil
+
+== Smart Moving 3.4 ==
++ reduced incompatibilites by switching to PlayerAPI 1.7
++ fixed icon drawing while colored messages are displayed
+
+== Smart Moving 3.3 ==
++ added Bukkit-ItemCraft installation package
++ fixed a crawl climbing SMP animation bug
+
+== Smart Moving 3.2.1 ==
++ fixed dysfunctional ModLoader installation package
+
+== Smart Moving 3.2 ==
++ added animations for other players in SMP
+
+== Smart Moving 3.1 ==
++ added trapdoor free climbing
++ added jump charge bar to game overlay
++ removed game settings replacement
++ restored toggling smart moving features in-game
++ fixed rendering when mod is disabled while in water
+
+== Smart Moving 3.0 ==
++ refactored ModLoader client packages to use Flan's PlayerAPI Mod
++ thereby probably fixed many SMP bugs
++ and sacrificed Aether 1.01 integration
+
+== Smart Moving 2.17 ==
++ added Aether Mod 1.02 integration
++ fixed aether no-cape render bug
+
+== Smart Moving 2.16 ==
++ improved swimming & diving
++ added FiniteLiquid water recognition
++ restored "sneaking" while riding
++ fixed many little bugs
+
+== Smart Moving 2.15 ==
++ added exhaustion bar to game overlay
++ improved armored feet scale rendering
++ fixed aether gloves under active shield render bug
+
+== Smart Moving 2.14 ==
++ fixed stuck in crawling bug
++ improved horizontal water to air transition
++ fixed crawling in shallow moving water
++ made ladder auto grabbing depend on ladder orientation
++ restored strafing for swimming and diving
+
+== Smart Moving 2.13.1 ==
++ fixed a class loader bug in both modloader client packages that crashed the game when no aether mod was present
+
+== Smart Moving 2.13 ==
++ improved aether player rendering
++ fixed rendering when mod is disabled while in water
+
+== Smart Moving 2.12 ==
++ removed server standalone package
++ splitted client ModLoader(Mp) package into seperate ModLoader and ModLoaderMp packages
++ removed configuration possibilities from ModLoaderMp client & server packages
++ removed server communication of new ModLoader client package
+
+== Smart Moving 2.11 ==
++ added ModLoaderMp server package
++ made ModLoader client package compatible with ModLoaderMP
++ fixed mysterious cobblestone appearances in SMP while climb crawling
+
+== Smart Moving 2.10 ==
++ fixed RedPower wire climbing bugs
++ fixed sign climbing bugs
++ fixed RedPower wire cover crawl climbing bugs
++ fixed some sneak/crawl/toggle bugs
+
+== Smart Moving 2.9 ==
++ added optional sneak toggling
++ added optional crawl toggling
+
+== Smart Moving 2.8 ==
++ improved RedPower compatibility (wires and wire covers <=> climb & crawl)
++ improved BuildCraft compatibility (pipes <=> climb & crawl)
++ really changed ladder climbing default
++ fixed crawling auto standup problems
++ fixed swim sneaking jump bug
+
+== Smart Moving 2.7 ==
++ added free ladder climbing
++ changed ladder climbing default
++ improved gap climbing to ladder climbing
+
+== Smart Moving 2.6 ==
++ improved fence wall and fence rope free climbing
++ fixed little climbing animation problems
++ made climbing direction area angles configurable
++ reduced default climbing direction area angles
++ added charged jumps
+
+== Smart Moving 2.5 ==
++ fixed bed climbing
++ made jumping optional, exhaustive and massively configurable
++ added longer exhausting sprint jumps by default
+
+== Smart Moving 2.4 ==
++ fixed configuration flags default values
++ fixed standalone package dc-kv-lr
++ added Aether Mod integration
+
+== Smart Moving 2.3 ==
++ added standalone SMP server package
++ added configurable client server communication
++ fixed SMP crawling in 1x1 passages at server
+
+== Smart Moving 2.2 ==
++ added configurable key to toggle smart moving features in-game
++ added free climbing into crawl gaps when sneaking while climbing up
++ massively improved climb-crawl-walk transitions
+
+== Smart Moving 2.1 ==
++ disabled smart moving when "riding" something (like boats, minecarts or pigs)
++ fixed sleeping while crawling problems
++ fixed minecraft crashes when changing dimension
++ fixed a render bug that crashed the game when you set the view to "third person" and then load a saved game where you sat in a boat
+
+== Smart Moving 2.0.1 ==
++ fixed a stupid multiplayer bug in the modloader package that crashed the game
+
+== Smart Moving 2.0 ==
++ renamed "climb" button to "grab" button to reflect additional usages
++ renaming "sneak" button to "hold" button if sneaking is disabled to reflect its additional usages
++ added solid but not normal blocks to the crawling stand up blockers
++ disabled jumping after standing up in shallow water while swimming
++ the climb/grab button can now be released while crawling without standing up
++ fixed animation when sneaking if sneaking is disabled
++ fixed animation when holding via sneak button while free climbing
+
+== Smart Moving 1.9 ==
++ added swimming and diving in shallow water
++ fixed diving collision detection
++ added switching between walking and swimming or diving in shallow water
++ added jumping when walking in shallow water
++ fixed crawling state loss on save
++ fixed automatic crawling teardown
+
+== Smart Moving 1.8 ==
++ added crawling
++ disabled climbing along inaccessible edges
++ made sneaking optional
+
+== Smart Moving 1.7 ==
++ updated to Minecraft 1.7.3
++ removed MCP mod package (MCP mods not at 1.7.3 yet)
+
+== Smart Moving 1.6 ==
++ fixed swimming over down floating "still" water problem
++ added automatic pulling towards edge when climbing down
++ fixed entity id alignment in multiplayer
++ fixed multiplayer respawn crashes
+
+== Smart Moving 1.5 ==
++ added horizontal free climbing speed factor option
++ added sprinting to climbing
++ fixed headwear rendering
++ fixed feet-only climbing rendering
++ fixed missing first person hand while swimming or diving
++ fixed individual climb & sprint key settings loss on exit
++ fixed vertical dive sprinting
++ improved diving up by jumping
++ added proper fence handling
++ added free fence climbing option
++ fixed jumping while climbing on ground
+
+== Smart Moving 1.4.1 ==
++ fixed a stupid diving render bug that crashed the game
+
+== Smart Moving 1.4 ==
++ fixed respawn crashes in singleplayer and multiplayer for modloader package
++ fixed idle diving animation
+
+== Smart Moving 1.3 ==
++ fixed player position and inventory loss in singleplayer in modloader package
++ disabled swimming and diving in moving water
+
+== Smart Moving 1.2 ==
++ fixed multiplayer support for modloader package
++ fixed multiplayer support for Minecraft-nx package (now Minecraft-nx-xb package)
++ added free climbing speed factor options
++ fixed "climb holding via sneak button" feature
+
+== Smart Moving 1.1 ==
++ added exhaustion for sprinting
++ added sneaking to swimming and diving
++ improved mutual cancellation between sneaking and sprinting
++ added swimming stand and sneak aminations
+
+== Smart Moving 1.0 ==
++ changed mod name to reflect the implementation of swimming, diving and sprinting
+
+== Smart Climbing 1.8 ==
++ added sprinting for walking, swimming and diving
+
+== Smart Climbing 1.7 ==
++ added alternative swimming animation
++ added alternative diving animation
+
+== Smart Climbing 1.6 ==
++ fixed various bugs & problems
++ added alternative swimming
++ added alternative diving
+
+== Smart Climbing 1.5 ==
++ added alternative standalone mod package
++ added support for MCP Mods
++ added support for ModLoader
+
+== Smart Climbing 1.4 ==
++ enabled climbing in water/lava
++ improved free climbing animations
++ normalized speed when "sneaking" while free climbing
++ reduced number of modified class files
+
+== Smart Climbing 1.3 ==
++ removed the stepping sounds while and right after free climbing
++ added climbing animations for free climbing
++ added climbing sound for free climbing
+
+== Smart Climbing 1.2 ==
++ added compact stair edge detection for all climbing types
++ added a missing down climbing holding scenario
++ added diagonal grabbing (to climb around outer edges)
++ faster climbing up & down speeds when free climbing with all limbs
++ sneaking while free climbing will hang on to the edges (similar to sneaking while ladder climbing)
+
+== Smart Climbing 1.1 ==
++ added climbing down in free climbing mode
++ added appropriate damage when starting free climbing while falling
++ disabled free climbing when falling too fast
++ improved free climbing usability (more like ladders now)
+
+== Smart Climbing 1.0 ==
++ updated to Minecraft 1.6.6
++ changed mod name to reflect the implementation of free climbing
++ reset version number
++ added changelog file
++ added options version number
+
+== Smart Ladder Climbing Speed 3.0 ==
++ added free climbing
++ added options file (for maintaining old versions behaviour when needed)
++ added readme file
+
+== Smart Ladder Climbing Speed 2.0 ==
++ increased ladder climbing speed when steppable holes are in walls nearby
+
+== Smart Ladder Climbing Speed 1.0 ==
++ added different climbing speeds for different hands and feet climbing combinations
