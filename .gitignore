@@ -1,24 +1,35 @@
-# Gradle
-/.gradle
-/build
-classes/
-
-# Eclipse
-/.classpath
-/.project
-/.settings
-/bin
-
-# IntelliJ IDEA
-/*.iml
-/*.ipr
-/*.iws
-/.idea
-/out
-
-# Debugging
-/eclipse
-/run
-
-# OS X
+# mac os
 .DS_Store
+
+# forge / gradle
+.gradle
+build/
+out/
+classes/
+run/
+
+# eclipse 
+*.launch
+.settings
+.classpath
+.project
+.metadata
+eclipse
+*.launch
+
+# idea
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# vscode
+.settings/
+.vscode/
+bin/
+.classpath
+
+# other
+bin/
+jars/
+/.nb-gradle/

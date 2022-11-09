@@ -199,8 +199,8 @@ public class SmartMovingRender extends SmartRenderContext
 		if (!Client.getNativeUserInterfaceDrawing())
 			return;
 
-//		if(!GL11.glGetBoolean(GL11.GL_ALPHA_TEST))
-//			return;
+		if(!GL11.glGetBoolean(GL11.GL_ALPHA_TEST))
+			return;
 
 		SmartMovingSelf moving = (SmartMovingSelf)SmartMovingFactory.getInstance(minecraft.thePlayer);
 		if(moving != null && Config.enabled && (Options._displayExhaustionBar.value || Options._displayJumpChargeBar.value))

@@ -32,7 +32,7 @@ public class RenderPlayer extends net.smart.render.RenderPlayer implements IRend
 	@Override
 	public net.smart.render.IModelPlayer createModel(ModelBiped existing, float f)
 	{
-		return new ModelPlayer(f, existing);
+		return new ModelPlayer(f);
 	}
 
 	@Override

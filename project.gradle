@@ -1,0 +1,28 @@
+jar {
+    manifest {
+        attributes (
+			'FMLCorePlugin': 'net.smart.core.SmartCorePlugin',
+			'FMLCorePluginContainsFMLMod': true,
+        )
+    }
+}
+
+task devJar(type: Jar) {
+	manifest {
+        attributes (
+			'FMLCorePlugin': 'net.smart.core.SmartCorePlugin',
+			'FMLCorePluginContainsFMLMod': true,
+        )
+    }
+	
+	classifier = 'dev'
+	from sourceSets.main.output
+}
+
+repositories {
+	maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+    compile 'com.github.makamys:SmartRender:2.1:dev'
+}

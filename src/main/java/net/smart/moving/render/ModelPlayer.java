@@ -17,15 +17,13 @@
 
 package net.smart.moving.render;
 
-import net.minecraft.client.model.ModelBiped;
-
 public class ModelPlayer extends net.smart.render.ModelPlayer implements IModelPlayer
 {
 	private final SmartMovingModel model;
 
-	public ModelPlayer(float f, ModelBiped existing)
+	public ModelPlayer(float f)
 	{
-		super(f, existing);
+		super(f);
 
 		model = new SmartMovingModel(this, this);
 	}
