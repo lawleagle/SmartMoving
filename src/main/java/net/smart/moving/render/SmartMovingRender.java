@@ -199,8 +199,9 @@ public class SmartMovingRender extends SmartRenderContext
 		if (!Client.getNativeUserInterfaceDrawing())
 			return;
 
-		if(!GL11.glGetBoolean(GL11.GL_ALPHA_TEST))
-			return;
+		// Returning here causes Smart Moving's icons to not get rendered when the last item in the hotbar is a 2D item with a stack size of 1
+		//if(!GL11.glGetBoolean(GL11.GL_ALPHA_TEST))
+		//	return;
 
 		SmartMovingSelf moving = (SmartMovingSelf)SmartMovingFactory.getInstance(minecraft.thePlayer);
 		if(moving != null && Config.enabled && (Options._displayExhaustionBar.value || Options._displayJumpChargeBar.value))
