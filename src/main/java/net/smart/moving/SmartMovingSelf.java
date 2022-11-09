@@ -68,12 +68,14 @@ public class SmartMovingSelf extends SmartMoving implements ISmartMovingSelf
 
 	public void moveEntityWithHeading(float moveStrafing, float moveForward)
 	{
-		if(sp.motionX == 0 && prevMotionX < 0.005)
-			sp.motionX = prevMotionX;
-
-		if(sp.motionZ == 0 && prevMotionZ < 0.005)
-			sp.motionZ = prevMotionZ;
-
+		if(!vanilla())
+		{
+			// trick to avoid cutoff (vanilla cuts off motionX at 0.005, but not prevMotionX)
+			if(sp.motionX == 0 && prevMotionX < 0.005)
+				sp.motionX = prevMotionX;
+			if(sp.motionZ == 0 && prevMotionZ < 0.005)
+				sp.motionZ = prevMotionZ;
+		}
 		if(sp.capabilities.isFlying && !Config.isFlyingEnabled())
 		{
 			double d3 = sp.motionY;
@@ -113,7 +115,18 @@ public class SmartMovingSelf extends SmartMoving implements ISmartMovingSelf
 			lastHorizontalCollisionZ = sp.posZ;
 		}
 
-		float speedFactor = this.getSpeedFactor(moveForward, moveStrafing);
+		float speedFactor = getConfigSpeedFactor() * getPotionSpeedFactor() * getNonSlowInputSpeedFactor(moveForward, moveStrafing);
+		float slowInputSpeedFactor = this.getSlowInputSpeedFactor(moveForward, moveStrafing);
+		if(vanilla()) 
+		{
+			// evade normalization of diagonal movement
+			moveForward *= slowInputSpeedFactor;
+			moveStrafing *= slowInputSpeedFactor;
+		}
+		else
+		{
+			speedFactor *= slowInputSpeedFactor;
+		}
 
 		boolean isLiquidClimbing = Config.isFreeClimbingEnabled() && sp.fallDistance <= 3.0 && wantClimbUp && sp.isCollidedHorizontally && !isDiving;
 		boolean handledSwimming = handleSwimming(moveForward, moveStrafing, speedFactor, wasSwimming, wasDiving, isLiquidClimbing, wasJumpingOutOfWater);
@@ -132,14 +145,24 @@ public class SmartMovingSelf extends SmartMoving implements ISmartMovingSelf
 		handleExhaustion(diffX, diffY, diffZ);
 	}
 
-	private float getSpeedFactor()
+	private float getCombinedSpeedFactor()
 	{
-		return Config.enabled ? Config._speedFactor.value * Config.getUserSpeedFactor() * getLandMovementFactor() * 10F / (sp.isSprinting() ? 1.3F : 1F) : 1F;
+		return getConfigSpeedFactor() * getPotionSpeedFactor();
+	}
+	
+	private float getConfigSpeedFactor()
+	{
+		return Config.enabled ? Config._speedFactor.value * Config.getUserSpeedFactor() : 1F;
+	}
+	
+	private float getPotionSpeedFactor()
+	{
+		return Config.enabled ? getLandMovementFactor() * 10F / (sp.isSprinting() ? 1.3F : 1F) : 1F;
 	}
 
-	private float getSpeedFactor(float moveForward, float moveStrafing)
+	private float getSlowInputSpeedFactor(float moveForward, float moveStrafing)
 	{
-		float speedFactor = getSpeedFactor();
+		float speedFactor = 1f;
 
 		if (sp.isUsingItem())
 		{
@@ -164,9 +187,18 @@ public class SmartMovingSelf extends SmartMoving implements ISmartMovingSelf
 		else if(isSlow)
 			speedFactor *= Config._sneakFactor.value;
 
+		if(isCeilingClimbing)
+			speedFactor *= Config._ceilingClimbingSpeedFactor.value;
+
+		return speedFactor;
+	}
+	
+	private float getNonSlowInputSpeedFactor(float moveForward, float moveStrafing)
+	{
+		float speedFactor = 1f;
+		
 		if(isFast)
 			speedFactor *= Config._sprintFactor.value;
-
 		if(isClimbing)
 			if(moveStrafing != 0F || moveForward != 0F)
 				speedFactor *= Config._freeClimbingHorizontalSpeedFactor.value;
@@ -190,10 +222,6 @@ public class SmartMovingSelf extends SmartMoving implements ISmartMovingSelf
 					}
 				}
 			}
-
-		if(isCeilingClimbing)
-			speedFactor *= Config._ceilingClimbingSpeedFactor.value;
-
 		return speedFactor;
 	}
 
@@ -638,7 +666,7 @@ public class SmartMovingSelf extends SmartMoving implements ISmartMovingSelf
 	private float landMotion(float moveForward, float moveStrafing, float speedFactor, boolean isOnLadder, boolean isOnVine)
 	{
 		float horizontalDamping;
-		if(sp.onGround && !isJumping)
+		if(sp.onGround && (!isJumping || vanilla()))
 		{
 			Block block = sp.worldObj.getBlock(MathHelper.floor_double(sp.posX), MathHelper.floor_double(sp.boundingBox.minY) - 1, MathHelper.floor_double(sp.posZ));
 			if(block != null)
@@ -669,15 +697,19 @@ public class SmartMovingSelf extends SmartMoving implements ISmartMovingSelf
 				speedFactor *= Config._jumpControlFactor.value;
 
 			float f3 = 0.1627714F / (horizontalDamping * horizontalDamping * horizontalDamping);
-			float f4 = sp.onGround ? getLandMovementFactor() * f3 : sp.jumpMovementFactor;
-			float rawSpeed = sp.isSprinting() ? f4 / 1.3F : f4;
+			float rawSpeed = sp.onGround ? 0.1f * f3 : sp.jumpMovementFactor / (sp.isSprinting() ? 1.3F : 1F);
+			if(!Config.enabled && sp.onGround)
+				speedFactor *= (getLandMovementFactor() * 10f) / (sp.isSprinting() ? 1.3F : 1F);
 			if(Config.isRunningEnabled() && isRunning() && !isFast)
 				speedFactor *= Config._runFactor.value;
+			if(!sp.onGround) {
+				speedFactor /= getPotionSpeedFactor();
+			}
 
 			sp.moveFlying(moveStrafing, moveForward, rawSpeed * speedFactor);
 		}
 
-		if(sp.onGround && !isJumping)
+		if(sp.onGround && (!isJumping || vanilla()))
 		{
 			Block block = sp.worldObj.getBlock(MathHelper.floor_double(sp.posX), MathHelper.floor_double(sp.boundingBox.minY) - 1, MathHelper.floor_double(sp.posZ));
 			if(block != null)
@@ -736,7 +768,7 @@ public class SmartMovingSelf extends SmartMoving implements ISmartMovingSelf
 			if(notTotalFreeClimbing)
 			{
 				sp.fallDistance = 0.0F;
-				sp.motionY = Math.max(sp.motionY, -0.15 * getSpeedFactor());
+				sp.motionY = Math.max(sp.motionY, -0.15 * getCombinedSpeedFactor());
 			}
 			if(Config.isFreeBaseClimb())
 			{
@@ -778,7 +810,7 @@ public class SmartMovingSelf extends SmartMoving implements ISmartMovingSelf
 
 		if(Config.isStandardBaseClimb() && sp.isCollidedHorizontally && isOnLadderOrVine)
 		{
-			sp.motionY = 0.2 * getSpeedFactor();
+			sp.motionY = 0.2 * getCombinedSpeedFactor();
 		}
 
 		if(Config.isSimpleBaseClimb() && sp.isCollidedHorizontally && isOnLadderOrVine)
@@ -799,7 +831,7 @@ public class SmartMovingSelf extends SmartMoving implements ISmartMovingSelf
 			else
 				sp.motionY = 0.0D;
 
-			sp.motionY *= getSpeedFactor();
+			sp.motionY *= getCombinedSpeedFactor();
 		}
 
 		if(Config.isSmartBaseClimb() || Config.isFreeClimbingEnabled())
@@ -849,7 +881,7 @@ public class SmartMovingSelf extends SmartMoving implements ISmartMovingSelf
 				else
 					sp.motionY = 0.0D;
 
-				sp.motionY *= getSpeedFactor();
+				sp.motionY *= getCombinedSpeedFactor();
 			}
 
 			if(Config.isFreeClimbingEnabled() && sp.fallDistance <= Config._freeClimbFallMaximumDistance.value && (!isOnLadderOrVine || Config.isFreeBaseClimb()))
@@ -1478,7 +1510,7 @@ public class SmartMovingSelf extends SmartMoving implements ISmartMovingSelf
 
 		if(value != HoldMotion)
 		{
-			float factor = getSpeedFactor();
+			float factor = getCombinedSpeedFactor();
 			if(isFast)
 				factor *= Config._sprintFactor.value;
 			if(Config.isFreeBaseClimb() && value == MediumUpMotion)
@@ -1993,53 +2025,72 @@ public class SmartMovingSelf extends SmartMoving implements ISmartMovingSelf
 			double verticalMotion = -0.078 + 0.498 * verticalJumpFactor * jumpChargeFactor;
 
 			if(horizontalJumpFactor > 1F && !sp.isCollidedHorizontally)
-				maxHorizontalMotion = (double)Config.getMaxHorizontalMotion(speed, type, inWater) * getSpeedFactor();
+				maxHorizontalMotion = (double)Config.getMaxHorizontalMotion(speed, type, inWater) * getCombinedSpeedFactor();
 
-			if(head)
+			if(type == Config.Up && vanilla())
 			{
-				double normalAngle = Math.atan(verticalMotion / horizontalMotion);
-				double totalMotion = Math.sqrt(verticalMotion * verticalMotion + horizontalMotion * horizontalMotion);
+				verticalMotion = 0.41999998688697815D;
 
-				double newAngle = Config.getHeadJumpFactor(headJumpCharge) * normalAngle;
-				double newVerticalMotion = totalMotion * Math.sin(newAngle);
-				double newHorizontalMotion = totalMotion * Math.cos(newAngle);
-
-				if(maxHorizontalMotion != null)
-					maxHorizontalMotion = maxHorizontalMotion * (newHorizontalMotion / horizontalMotion);
-
-				verticalMotion = newVerticalMotion;
-				horizontalMotion = newHorizontalMotion;
-			}
-
-			if(angle != null)
-			{
-				float jumpAngle = angle / RadiantToAngle;
-				boolean reset = type == Config.WallUp || type == Config.WallHead;
-
-				double horizontal = Math.max(horizontalMotion, horizontalJumpFactor);
-				double moveX = -Math.sin(jumpAngle);
-				double moveZ = Math.cos(jumpAngle);
-
-				sp.motionX = getJumpMoving(jumpMotionX, moveX, reset, horizontal, horizontalJumpFactor);
-				sp.motionZ = getJumpMoving(jumpMotionZ, moveZ, reset, horizontal, horizontalJumpFactor);
-
-				horizontalMotion = 0;
-				verticalMotion = verticalJumpFactor;
-			}
-
-			if(horizontalMotion > 0)
-			{
-				double absoluteMotionX = Math.abs(sp.motionX) * horizontalJumpFactor;
-				double absoluteMotionZ = Math.abs(sp.motionZ) * horizontalJumpFactor;
-
-				if(maxHorizontalMotion != null)
+				if (sp.isPotionActive(Potion.jump))
 				{
-					absoluteMotionX = Math.min(absoluteMotionX, maxHorizontalMotion * (horizontalJumpFactor * (Math.abs(sp.motionX) / horizontalMotion)));
-					absoluteMotionZ = Math.min(absoluteMotionZ, maxHorizontalMotion * (horizontalJumpFactor * (Math.abs(sp.motionZ) / horizontalMotion)));
+					verticalMotion += (double)((float)(sp.getActivePotionEffect(Potion.jump).getAmplifier() + 1) * 0.1F);
 				}
 
-				sp.motionX = Math.signum(sp.motionX) * absoluteMotionX;
-				sp.motionZ = Math.signum(sp.motionZ) * absoluteMotionZ;
+				if (sp.isSprinting())
+				{
+					float f = sp.rotationYaw * 0.017453292F;
+					sp.motionX -= (double)(MathHelper.sin(f) * 0.2F);
+					sp.motionZ += (double)(MathHelper.cos(f) * 0.2F);
+				}
+			}
+			else
+			{			
+				if(head)
+				{
+					double normalAngle = Math.atan(verticalMotion / horizontalMotion);
+					double totalMotion = Math.sqrt(verticalMotion * verticalMotion + horizontalMotion * horizontalMotion);
+	
+					double newAngle = Config.getHeadJumpFactor(headJumpCharge) * normalAngle;
+					double newVerticalMotion = totalMotion * Math.sin(newAngle);
+					double newHorizontalMotion = totalMotion * Math.cos(newAngle);
+	
+					if(maxHorizontalMotion != null)
+						maxHorizontalMotion = maxHorizontalMotion * (newHorizontalMotion / horizontalMotion);
+	
+					verticalMotion = newVerticalMotion;
+					horizontalMotion = newHorizontalMotion;
+				}
+				
+				if(angle != null)
+				{
+					float jumpAngle = angle / RadiantToAngle;
+					boolean reset = type == Config.WallUp || type == Config.WallHead;
+	
+					double horizontal = Math.max(horizontalMotion, horizontalJumpFactor);
+					double moveX = -Math.sin(jumpAngle);
+					double moveZ = Math.cos(jumpAngle);
+	
+					sp.motionX = getJumpMoving(jumpMotionX, moveX, reset, horizontal, horizontalJumpFactor);
+					sp.motionZ = getJumpMoving(jumpMotionZ, moveZ, reset, horizontal, horizontalJumpFactor);
+	
+					horizontalMotion = 0;
+					verticalMotion = verticalJumpFactor;
+				}
+	
+				if(horizontalMotion > 0)
+				{
+					double absoluteMotionX = Math.abs(sp.motionX) * horizontalJumpFactor;
+					double absoluteMotionZ = Math.abs(sp.motionZ) * horizontalJumpFactor;
+	
+					if(maxHorizontalMotion != null)
+					{
+						absoluteMotionX = Math.min(absoluteMotionX, maxHorizontalMotion * (horizontalJumpFactor * (Math.abs(sp.motionX) / horizontalMotion)));
+						absoluteMotionZ = Math.min(absoluteMotionZ, maxHorizontalMotion * (horizontalJumpFactor * (Math.abs(sp.motionZ) / horizontalMotion)));
+					}
+	
+					sp.motionX = Math.signum(sp.motionX) * absoluteMotionX;
+					sp.motionZ = Math.signum(sp.motionZ) * absoluteMotionZ;
+				}
 			}
 
 			if(up && !noVertical)
@@ -3114,7 +3165,7 @@ public class SmartMovingSelf extends SmartMoving implements ISmartMovingSelf
 
 	public boolean isRunning()
 	{
-		return sp.isSprinting() && !isFast && sp.onGround;
+		return sp.isSprinting() && !isFast && (sp.onGround || vanilla());
 	}
 
 	public void beforeGetSleepTimer()
@@ -3197,6 +3248,11 @@ public class SmartMovingSelf extends SmartMoving implements ISmartMovingSelf
 	public void afterActivateBlockOrUseItem()
 	{
 		forceIsSneaking = null;
+	}
+
+	private boolean vanilla()
+	{
+		return !Config.enabled || Config._vanillaStyle.value;
 	}
 
 	private Boolean forceIsSneaking;

@@ -88,6 +88,10 @@ public class SmartMovingConfig extends SmartMovingProperties
 
 
 
+	public final Property<Boolean> _vanillaStyle = Modified("move.general.vanilla").comment("Whether movement on ground should be identical to vanilla").book("Generic Movement", "Below you find options that apply to movement in general.");
+
+
+
 	public final Property<Float> _speedFactor = PositiveFactor("move.speed.factor").defaults(1F).comment("Global player speed factor (>= 0)").book("Global Speed", "Below you find the options to manipulate the global speed applied to all speeds.");
 	public final Property<Boolean> _speedUser = Creative("move.speed.user").defaults(true, _pre_sm_3_2).comment("To switch on/off in-game speed manipulation");
 	public final Property<Float> _speedUserFactor = PositiveFactor("move.speed.user.factor").singular().defaults(0.2F).min(0.0001F).comment("The factor for in-game speed manipulation (>= 0.0001)");
