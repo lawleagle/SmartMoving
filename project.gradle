@@ -1,19 +1,19 @@
 jar {
-    manifest {
-        attributes (
+	manifest {
+		attributes (
 			'FMLCorePlugin': 'net.smart.core.SmartCorePlugin',
 			'FMLCorePluginContainsFMLMod': true,
-        )
-    }
+		)
+	}
 }
 
 task devJar(type: Jar) {
 	manifest {
-        attributes (
+		attributes (
 			'FMLCorePlugin': 'net.smart.core.SmartCorePlugin',
 			'FMLCorePluginContainsFMLMod': true,
-        )
-    }
+		)
+	}
 	
 	classifier = 'dev'
 	from sourceSets.main.output
@@ -24,5 +24,5 @@ repositories {
 }
 
 dependencies {
-    compile 'com.github.makamys:SmartRender:2.1:dev'
+	compile 'com.github.makamys:SmartRender:2.1:dev'
 }
