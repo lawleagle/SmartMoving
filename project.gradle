@@ -1,32 +1,42 @@
-jar {
-	manifest {
-		attributes (
-			'FMLCorePlugin': 'net.smart.core.SmartCorePlugin',
-			'FMLCorePluginContainsFMLMod': true,
-		)
+if(!project.hasProperty("testMod")){
+	jar {
+		manifest {
+			attributes (
+				'FMLCorePlugin': 'net.smart.core.SmartCorePlugin',
+				'FMLCorePluginContainsFMLMod': true,
+			)
+		}
+		
+		sourceSets.main.java.exclude('net/smart/moving/test/**')
 	}
-}
 
-task devJar(type: Jar) {
-	manifest {
-		attributes (
-			'FMLCorePlugin': 'net.smart.core.SmartCorePlugin',
-			'FMLCorePluginContainsFMLMod': true,
-		)
+	task devJar(type: Jar) {
+		manifest {
+			attributes (
+				'FMLCorePlugin': 'net.smart.core.SmartCorePlugin',
+				'FMLCorePluginContainsFMLMod': true,
+			)
+		}
+		
+		classifier = 'dev'
+		from sourceSets.main.output
 	}
 	
-	classifier = 'dev'
-	from sourceSets.main.output
-}
+	artifacts {
+		archives devJar
+	}
 
-artifacts {
-	archives devJar
-}
+	repositories {
+		maven { url 'https://jitpack.io' }
+	}
 
-repositories {
-	maven { url 'https://jitpack.io' }
-}
-
-dependencies {
-	compile 'com.github.makamys:SmartRender:2.1:dev'
+	dependencies {
+		compile 'com.github.makamys:SmartRender:2.1:dev'
+	}
+} else {
+	jar {
+		sourceSets.main.java.include('net/smart/moving/test/**')
+		include('net/smart/moving/test/**')
+		classifier = 'test'
+	}
 }
