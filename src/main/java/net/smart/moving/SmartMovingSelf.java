@@ -2630,7 +2630,7 @@ public class SmartMovingSelf extends SmartMoving implements ISmartMovingSelf
 
 		if(isGroundSprinting && !wasGroundSprinting)
 		{
-			wasRunningWhenSprintStarted = sp.isSprinting();
+			wasRunningWhenSprintStarted = Config._sprintAlwaysRun.value || sp.isSprinting();
 			sp.setSprinting(isStandupSprintingOrRunning());
 		}
 		else if(wasGroundSprinting && !isGroundSprinting)

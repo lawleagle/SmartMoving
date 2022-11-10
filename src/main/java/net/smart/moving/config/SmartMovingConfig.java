@@ -177,6 +177,7 @@ public class SmartMovingConfig extends SmartMovingProperties
 	public final Property<Boolean> _sprint = Unmodified("move.sprint").comment("To switch on/off generic sprinting").book("Generic sprinting", "Below you find the options for Smart Moving's generic sprinting available for many different smart movings plus standard walking");
 	public final Property<Float> _sprintFactor = PositiveFactor("move.sprint.factor").defaults(1.5F).min(_run.eitherOr(_runFactor.plus(0.1F), 1.1F)).comment("Generic sprinting factor (>= 1.1 AND >= 'move.run.factor' + 0.1 if relevant)");
 	public final Property<Boolean> _sprintExhaustion = Medium("move.sprint.exhaustion").depends(_sprint).comment("To switch on/off sprinting exhaustion");
+	public final Property<Boolean> _sprintAlwaysRun = Unmodified("move.sprint.always.run").comment("Always transition to run when releasing the sprint key.");
 
 	public final Property<Float> _sprintExhaustionStart = Positive("move.exhaustion.sprint.start").defaults(50F).comment("Maximum exhaustion to start a sprint (>= 0)").section();
 	public final Property<Float> _sprintExhaustionStop = Positive("move.exhaustion.sprint.stop").up(100F, _sprintExhaustionStart).comment("Maximum exhaustion to continue a sprint (>= \"move.exhaustion.sprint.start\")");
