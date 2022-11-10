@@ -697,7 +697,7 @@ public class SmartMovingSelf extends SmartMoving implements ISmartMovingSelf
 				speedFactor *= Config._jumpControlFactor.value;
 
 			float f3 = 0.1627714F / (horizontalDamping * horizontalDamping * horizontalDamping);
-			float rawSpeed = sp.onGround ? 0.1f * f3 : sp.jumpMovementFactor / (sp.isSprinting() ? 1.3F : 1F);
+			float rawSpeed = sp.onGround ? 0.1f * f3 : sp.jumpMovementFactor / (sp.isSprinting() && !sp.capabilities.isFlying ? 1.3F : 1F);
 			if(!Config.enabled && sp.onGround)
 				speedFactor *= (getLandMovementFactor() * 10f) / (sp.isSprinting() ? 1.3F : 1F);
 			if(Config.isRunningEnabled() && isRunning() && !isFast)
@@ -2576,7 +2576,7 @@ public class SmartMovingSelf extends SmartMoving implements ISmartMovingSelf
 					(isFast || isSprintJump || exhaustion <= Config._sprintExhaustionStart.value)
 			);
 
-		if(sp.onGround || isFlying || isSwimming || isDiving || sp.handleLavaMovement())
+		if(sp.onGround || isFlying || sp.capabilities.isFlying || isSwimming || isDiving || sp.handleLavaMovement())
 			isSprintJump = false;
 
 		boolean preferSprint = false;
@@ -2612,7 +2612,7 @@ public class SmartMovingSelf extends SmartMoving implements ISmartMovingSelf
 		boolean canAllSprint = canHorizontallySprint && canVerticallySprint;
 
 		boolean wasGroundSprinting = isGroundSprinting;
-		isGroundSprinting = canHorizontallySprint && sp.onGround && !isSwimming && !isDiving && !isClimbing;
+		isGroundSprinting = canHorizontallySprint && (sp.onGround || isLevitating()) && !isSwimming && !isDiving && !isClimbing;
 		boolean isSwimSprinting = canHorizontallySprint && isSwimming;
 		boolean isDiveSprinting = canAllSprint && isDiving;
 		boolean isCeilingSprinting = canHorizontallySprint && isCeilingClimbing;
@@ -3253,6 +3253,11 @@ public class SmartMovingSelf extends SmartMoving implements ISmartMovingSelf
 	private boolean vanilla()
 	{
 		return !Config.enabled || Config._vanillaStyle.value;
+	}
+	
+	private boolean isLevitating()
+	{
+		return !Config.isFlyingEnabled() && sp.capabilities.isFlying;
 	}
 
 	private Boolean forceIsSneaking;
