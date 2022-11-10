@@ -701,7 +701,7 @@ public class SmartMovingSelf extends SmartMoving implements ISmartMovingSelf
 			if(!Config.enabled && sp.onGround)
 				speedFactor *= (getLandMovementFactor() * 10f) / (sp.isSprinting() ? 1.3F : 1F);
 			if(Config.isRunningEnabled() && isRunning() && !isFast)
-				speedFactor *= Config._runFactor.value;
+				speedFactor *= !sp.capabilities.isFlying ? Config._runFactor.value : Config._runFactorLevitate.value;
 			if(!sp.onGround) {
 				speedFactor /= getPotionSpeedFactor();
 			}

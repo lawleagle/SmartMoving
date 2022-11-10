@@ -167,6 +167,7 @@ public class SmartMovingConfig extends SmartMovingProperties
 	public final Property<Boolean> _run = Unmodified("move.run").comment("To switch on/off standard sprinting").book("Standard sprinting", "Below you find the options for standard vanilla Minecraft sprinting (sometimes referred as \"running\" here)");
 	public final Property<Float> _runFactor = PositiveFactor("move.run.factor").defaults(1.3F).min(1.1F).comment("Standard sprinting factor (>= 1.1)");
 	public final Property<Boolean> _runExhaustion = Hard("move.run.exhaustion").depends(_run).comment("To switch on/off standard sprinting exhaustion");
+	public final Property<Float> _runFactorLevitate = PositiveFactor("move.run.factor.levitate").defaults(Value(1.3F).c(2.0F)).min(1.1F).comment("Sprinting factor while levitating (>= 1.1)");
 
 	public final Property<Float> _runExhaustionStart = Positive("move.exhaustion.run.start").defaults(75F).comment("Maximum exhaustion to start a standard sprint (>= 0)").section();
 	public final Property<Float> _runExhaustionStop = Positive("move.exhaustion.run.stop").up(100F, _runExhaustionStart).comment("Maximum exhaustion to continue a standard sprint (>= \"move.exhaustion.run.start\")");
