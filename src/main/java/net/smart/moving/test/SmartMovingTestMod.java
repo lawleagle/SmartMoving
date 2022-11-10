@@ -1,7 +1,10 @@
 package net.smart.moving.test;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 import java.util.function.Function;
 
 import org.apache.logging.log4j.LogManager;
@@ -32,11 +35,14 @@ public class SmartMovingTestMod {
 	private double lastX;
 	private double lastY;
 	private double lastZ;
+	private TestEvent lastEventRun;
 	
 	private boolean running;
 	private int time;
 	
 	public static SmartMovingTestMod instance;
+	
+	FileWriter out;
 	
 	private static final List<TestEvent> testEvents = Arrays.asList(
 		new TestEvent("WAIT_BEFORE_WALK", 3),
@@ -93,36 +99,59 @@ public class SmartMovingTestMod {
 	
 	@SubscribeEvent
 	public void onTick(PlayerTickEvent event) {
-		if(event.side == Side.SERVER && event.phase == Phase.START && running) {
+		if(event.side == Side.CLIENT && event.phase == Phase.START && running) {
 			if(Keyboard.isKeyDown(Keyboard.KEY_P)) {
 				System.out.println("P key pressed, aborting test!");
 				running = false;
 			}
 			
 			int timeCounter = 0;
+			TestEvent eventRun = null;
 			for(TestEvent e : testEvents) {
 				if(time == timeCounter) {
 					System.out.println("Running event " + e.name + " for " + e.duration + " seconds.");
+					eventRun = e;
 					for(Runnable a : e.actions) {
 						a.run();
 					}
 					break;
 				}
-				timeCounter += e.duration * 20;
+				timeCounter += e.duration * 10;
 			}
 			if(time > timeCounter) {
 				System.out.println("All test events executed!");
 				running = false;
 			}
 			time++;
-			/*PlayerTickEvent pte = (PlayerTickEvent)event;
+			PlayerTickEvent pte = (PlayerTickEvent)event;
 			double x = pte.player.posX;
 			double y = pte.player.posY;
 			double z = pte.player.posZ;
-			LOGGER.info(String.format(Locale.ROOT, "delta XYZ:%12.4f%12.4f%12.4f", x-lastX, y-lastY, z-lastZ));
+			
+			String line = String.format(Locale.ROOT, "%12.4f%12.4f%12.4f", x-lastX, y-lastY, z-lastZ);
+			if(lastEventRun != null) {
+				line += " # start " + lastEventRun.name;
+			}
+			line += "\n";
+			
+			try {
+				out.write(line);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
 			lastX = x;
 			lastY = y;
-			lastZ = z;*/
+			lastZ = z;
+			lastEventRun = eventRun;
+			
+			if(!running) {
+				try {
+					out.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 
@@ -132,6 +161,11 @@ public class SmartMovingTestMod {
 		EntityPlayer player = Minecraft.getMinecraft().thePlayer;
 		player.rotationPitch = player.rotationYaw = 0;
 		time = 0;
+		try {
+			out = new FileWriter("smart-moving-test-output.txt");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		running = true;
 	}
 	
