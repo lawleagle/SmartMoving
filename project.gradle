@@ -19,6 +19,10 @@ task devJar(type: Jar) {
 	from sourceSets.main.output
 }
 
+artifacts {
+	archives devJar
+}
+
 repositories {
 	maven { url 'https://jitpack.io' }
 }
