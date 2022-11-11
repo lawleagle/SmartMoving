@@ -34,7 +34,7 @@ import net.smart.core.*;
 import net.smart.moving.config.*;
 import net.smart.utilities.*;
 
-@Mod(modid = "SmartMoving", name = "Smart Moving", version = "15.6", dependencies = "required-after:PlayerAPI@[1.3,)")
+@Mod(modid = "SmartMoving", name = "Smart Moving", version = "15.6", dependencies = "required-after:PlayerAPI@[1.3,);required-after:SmartRender@[2.1,)")
 public class SmartMovingMod
 {
 	protected static String ModComVersion = "2.3.1";
