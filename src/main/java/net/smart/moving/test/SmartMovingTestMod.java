@@ -41,6 +41,7 @@ public class SmartMovingTestMod {
 	private int time;
 	
 	public static SmartMovingTestMod instance;
+	private static Minecraft mc;
 	
 	FileWriter out;
 	
@@ -49,10 +50,21 @@ public class SmartMovingTestMod {
 		new TestEvent("WALK_PRE", 4, new SetKeyState(gs -> gs.keyBindForward, true)),
 		new TestEvent("WALK_JUMP", 8, new SetKeyState(gs -> gs.keyBindJump, true)),
 		new TestEvent("WALK_END", 4, new SetKeyState(gs -> gs.keyBindJump, false)),
-		new TestEvent("SPRINT_PRE", 4, new SetKeyState(gs -> gs.keyBindSprint, true)),
+		new TestEvent("SPRINT_PREPARE", 2, new SetKeyState(gs -> gs.keyBindSprint, true)),
+		new TestEvent("SPRINT_PRE", 4, new SetKeyState(gs -> gs.keyBindSprint, false)),
 		new TestEvent("SPRINT_JUMP", 8, new SetKeyState(gs -> gs.keyBindJump, true)),
 		new TestEvent("SPRINT_END", 4, new SetKeyState(gs -> gs.keyBindJump, false)),
-		new TestEvent("WAIT_BEFORE_FINISH", 3, new SetKeyState(gs -> gs.keyBindForward, false))
+		new TestEvent("WAIT_BEFORE_SWIFT", 3, new SetKeyState(gs -> gs.keyBindForward, false)),
+		new TestEvent("SWIFT_PREPARE", 2, () -> mc.thePlayer.sendChatMessage("/effect @p 1 600 0")),
+		new TestEvent("SWIFT_WALK_PRE", 4, new SetKeyState(gs -> gs.keyBindForward, true)),
+		new TestEvent("SWIFT_WALK_JUMP", 8, new SetKeyState(gs -> gs.keyBindJump, true)),
+		new TestEvent("SWIFT_WALK_END", 4, new SetKeyState(gs -> gs.keyBindJump, false)),
+		new TestEvent("SWIFT_SPRINT_PREPARE", 2, new SetKeyState(gs -> gs.keyBindSprint, true)),
+		new TestEvent("SWIFT_SPRINT_PRE", 4, new SetKeyState(gs -> gs.keyBindSprint, false)),
+		new TestEvent("SWIFT_SPRINT_JUMP", 8, new SetKeyState(gs -> gs.keyBindJump, true)),
+		new TestEvent("SWIFT_SPRINT_END", 4, new SetKeyState(gs -> gs.keyBindJump, false)),
+		new TestEvent("WAIT_BEFORE_FINISH", 3, new SetKeyState(gs -> gs.keyBindForward, false)),
+		new TestEvent("FINISH", 1, () -> mc.thePlayer.sendChatMessage("/effect @p clear"))
 	);
 	
 	private static class TestEvent {
@@ -89,6 +101,7 @@ public class SmartMovingTestMod {
 	@EventHandler
 	public void preinit(FMLPreInitializationEvent event) {
 		instance = this;
+		mc = Minecraft.getMinecraft();
 		FMLCommonHandler.instance().bus().register(this);
 	}
 	
