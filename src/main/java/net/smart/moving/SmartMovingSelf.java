@@ -631,6 +631,14 @@ public class SmartMovingSelf extends SmartMoving implements ISmartMovingSelf
 
 	private void handleLand(float moveForward, float moveStrafing, float speedFactor, boolean handledSwimming, boolean handledLava, boolean handledAlternativeFlying, boolean wasShortInWater, boolean wasClimbing, boolean wasCeilingClimbing)
 	{
+		if(!handledAlternativeFlying)
+		{
+			if (esp.movementInput.jump && Config.isSprintingEnabled() && sprintButton.Pressed && sp.capabilities.isFlying)
+			{
+				sp.motionY += 0.55D;
+			}
+		}
+		
 		if(!handledSwimming && !handledLava && !handledAlternativeFlying)
 		{
 			resetSwimming();
