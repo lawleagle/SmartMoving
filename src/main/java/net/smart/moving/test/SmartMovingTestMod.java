@@ -68,6 +68,12 @@ public class SmartMovingTestMod {
 		new TestEvent("SWIFT_SPRINT_PRE", 4, new SetKeyState(gs -> gs.keyBindSprint, false)),
 		new TestEvent("SWIFT_SPRINT_JUMP", 8, new SetKeyState(gs -> gs.keyBindJump, true)),
 		new TestEvent("SWIFT_SPRINT_END", 4, new SetKeyState(gs -> gs.keyBindJump, false)),
+		new TestEvent("WAIT_BEFORE_HIJUMP", 3, new SetKeyState(gs -> gs.keyBindForward, false)),
+		new TestEvent("HIJUMP_PREPARE_1", 1, () -> mc.thePlayer.sendChatMessage("/effect @p clear")),
+		new TestEvent("HIJUMP_PREPARE_2", 1, () -> mc.thePlayer.sendChatMessage("/effect @p 8 600 0")),
+		new TestEvent("HIJUMP_WALK_PRE", 4, new SetKeyState(gs -> gs.keyBindForward, true)),
+		new TestEvent("HIJUMP_JUMP", 8, new SetKeyState(gs -> gs.keyBindJump, true)),
+		new TestEvent("HIJUMP_WALK_END", 4, new SetKeyState(gs -> gs.keyBindJump, false)),
 		new TestEvent("WAIT_BEFORE_FINISH", 3, new SetKeyState(gs -> gs.keyBindForward, false)),
 		new TestEvent("FINISH", 1, () -> mc.thePlayer.sendChatMessage("/effect @p clear"))
 	);
