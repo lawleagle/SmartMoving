@@ -198,7 +198,7 @@ public class SmartMovingSelf extends SmartMoving implements ISmartMovingSelf
 		float speedFactor = 1f;
 		
 		if(isFast)
-			speedFactor *= Config._sprintFactor.value;
+			speedFactor *= (!isLevitating() ? Config._sprintFactor.value : Config._sprintFactorLevitate.value);
 		if(isClimbing)
 			if(moveStrafing != 0F || moveForward != 0F)
 				speedFactor *= Config._freeClimbingHorizontalSpeedFactor.value;

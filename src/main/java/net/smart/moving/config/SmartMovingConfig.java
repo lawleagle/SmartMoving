@@ -166,8 +166,8 @@ public class SmartMovingConfig extends SmartMovingProperties
 
 	public final Property<Boolean> _run = Unmodified("move.run").comment("To switch on/off standard sprinting").book("Standard sprinting", "Below you find the options for standard vanilla Minecraft sprinting (sometimes referred as \"running\" here)");
 	public final Property<Float> _runFactor = PositiveFactor("move.run.factor").defaults(1.3F).min(1.1F).comment("Standard sprinting factor (>= 1.1)");
-	public final Property<Boolean> _runExhaustion = Hard("move.run.exhaustion").depends(_run).comment("To switch on/off standard sprinting exhaustion");
 	public final Property<Float> _runFactorLevitate = PositiveFactor("move.run.factor.levitate").defaults(Value(1.3F).c(2.0F)).min(1.1F).comment("Sprinting factor while levitating (>= 1.1)");
+	public final Property<Boolean> _runExhaustion = Hard("move.run.exhaustion").depends(_run).comment("To switch on/off standard sprinting exhaustion");
 
 	public final Property<Float> _runExhaustionStart = Positive("move.exhaustion.run.start").defaults(75F).comment("Maximum exhaustion to start a standard sprint (>= 0)").section();
 	public final Property<Float> _runExhaustionStop = Positive("move.exhaustion.run.stop").up(100F, _runExhaustionStart).comment("Maximum exhaustion to continue a standard sprint (>= \"move.exhaustion.run.start\")");
@@ -177,6 +177,7 @@ public class SmartMovingConfig extends SmartMovingProperties
 
 	public final Property<Boolean> _sprint = Unmodified("move.sprint").comment("To switch on/off generic sprinting").book("Generic sprinting", "Below you find the options for Smart Moving's generic sprinting available for many different smart movings plus standard walking");
 	public final Property<Float> _sprintFactor = PositiveFactor("move.sprint.factor").defaults(1.5F).min(_run.eitherOr(_runFactor.plus(0.1F), 1.1F)).comment("Generic sprinting factor (>= 1.1 AND >= 'move.run.factor' + 0.1 if relevant)");
+	public final Property<Float> _sprintFactorLevitate = PositiveFactor("move.sprint.factor.levitate").defaults(Value(1.5F).c(3F)).min(_run.eitherOr(_runFactorLevitate.plus(0.1F), 1.1F)).comment("Sprinting factor while levitating (>= 1.1 AND >= 'move.run.factor.levitate' + 0.1 if relevant)");
 	public final Property<Boolean> _sprintExhaustion = Medium("move.sprint.exhaustion").depends(_sprint).comment("To switch on/off sprinting exhaustion");
 	public final Property<Boolean> _sprintAlwaysRun = Unmodified("move.sprint.always.run").comment("Always transition to run when releasing the sprint key.");
 
