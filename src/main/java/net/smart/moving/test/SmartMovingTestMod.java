@@ -2,6 +2,7 @@ package net.smart.moving.test;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
@@ -137,23 +138,36 @@ public class SmartMovingTestMod {
 				System.out.println("All test events executed!");
 				running = false;
 			}
-			time++;
+			
 			PlayerTickEvent pte = (PlayerTickEvent)event;
 			double x = pte.player.posX;
 			double y = pte.player.posY;
 			double z = pte.player.posZ;
 			
 			String line = String.format(Locale.ROOT, "%12.4f%12.4f%12.4f", x-lastX, y-lastY, z-lastZ);
+			ArrayList<String> comments = new ArrayList<>();
+			if(time == 0) {
+				if(TEST_TICKS_PER_SECOND != 20) {
+					comments.add("note: ticks per second: " + TEST_TICKS_PER_SECOND);
+				}
+			}
 			if(lastEventRun != null) {
-				line += " # start " + lastEventRun.name;
+				comments.add("start " + lastEventRun.name);
+			}
+			if(!comments.isEmpty()) {
+				line += " # " + String.join("; ", comments);
 			}
 			line += "\n";
 			
-			try {
-				out.write(line);
-			} catch (IOException e) {
-				e.printStackTrace();
+			if(time != 0) {
+				try {
+					out.write(line);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
+			
+			time++;
 			
 			lastX = x;
 			lastY = y;
