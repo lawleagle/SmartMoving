@@ -51,7 +51,7 @@ public class SmartMovingTestMod {
 	FileWriter out;
 	
 	private static final List<TestEvent> testEvents = Arrays.asList(
-		new TestEvent("WAIT_BEFORE_WALK", 3),
+		new TestEvent("WAIT_BEFORE_WALK", 3, () -> mc.thePlayer.sendChatMessage("/effect @p clear")),
 		new TestEvent("WALK_PRE", 4, new SetKeyState(gs -> gs.keyBindForward, true)),
 		new TestEvent("WALK_JUMP", 8, new SetKeyState(gs -> gs.keyBindJump, true)),
 		new TestEvent("WALK_END", 4, new SetKeyState(gs -> gs.keyBindJump, false)),
