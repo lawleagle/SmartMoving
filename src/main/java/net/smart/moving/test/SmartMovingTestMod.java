@@ -32,6 +32,8 @@ public class SmartMovingTestMod {
 	
 	public static final Logger LOGGER = LogManager.getLogger("smartmovingtest");
 	
+	private static final int TEST_TICKS_PER_SECOND = Integer.parseInt(System.getProperty("smartMovingTest.ticksPerSecond", "20"));
+	
 	private double lastX;
 	private double lastY;
 	private double lastZ;
@@ -129,7 +131,7 @@ public class SmartMovingTestMod {
 					}
 					break;
 				}
-				timeCounter += e.duration * 10;
+				timeCounter += e.duration * TEST_TICKS_PER_SECOND;
 			}
 			if(time > timeCounter) {
 				System.out.println("All test events executed!");
