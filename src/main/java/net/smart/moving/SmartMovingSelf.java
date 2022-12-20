@@ -1835,11 +1835,6 @@ public class SmartMovingSelf extends SmartMoving implements ISmartMovingSelf
 			return;
 
 		boolean jump = jumpAvoided && sp.onGround && isp.getIsJumpingField() && !sp.isInWater() && !sp.handleLavaMovement();
-		if(jump)
-		{
-			if(sp.boundingBox.minY - getMaxPlayerSolidBetween(sp.boundingBox.minY - 0.2D, sp.boundingBox.minY, 0) >= 0.01D)
-				return; // Maybe SPC flying?
-		}
 
 		jumpMotionX = sp.motionX;
 		jumpMotionZ = sp.motionZ;
