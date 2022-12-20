@@ -635,7 +635,7 @@ public class SmartMovingSelf extends SmartMoving implements ISmartMovingSelf
 		{
 			if (esp.movementInput.jump && Config.isSprintingEnabled() && sprintButton.Pressed && sp.capabilities.isFlying)
 			{
-				sp.motionY += 0.55D;
+				sp.motionY += Config._sprintFactorLevitate.value * Config._sprintFactorLevitateVertical.value;
 			}
 		}
 		

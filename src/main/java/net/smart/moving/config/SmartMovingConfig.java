@@ -178,6 +178,7 @@ public class SmartMovingConfig extends SmartMovingProperties
 	public final Property<Boolean> _sprint = Unmodified("move.sprint").comment("To switch on/off generic sprinting").book("Generic sprinting", "Below you find the options for Smart Moving's generic sprinting available for many different smart movings plus standard walking");
 	public final Property<Float> _sprintFactor = PositiveFactor("move.sprint.factor").defaults(1.5F).min(_run.eitherOr(_runFactor.plus(0.1F), 1.1F)).comment("Generic sprinting factor (>= 1.1 AND >= 'move.run.factor' + 0.1 if relevant)");
 	public final Property<Float> _sprintFactorLevitate = PositiveFactor("move.sprint.factor.levitate").defaults(Value(1.5F).c(3F)).min(_run.eitherOr(_runFactorLevitate.plus(0.1F), 1.1F)).comment("Generic sprinting factor while levitating (>= 1.1 AND >= 'move.run.factor.levitate' + 0.1 if relevant)");
+	public final Property<Float> _sprintFactorLevitateVertical = PositiveFactor("move.sprint.factor.levitate.vertical").defaults(0.185F).comment("Amount of vertical speed boost applied when ascending while sprinting during levitation (>= 0, is multiplied with levitation sprinting factor)");
 	public final Property<Boolean> _sprintExhaustion = Medium("move.sprint.exhaustion").depends(_sprint).comment("To switch on/off sprinting exhaustion");
 	public final Property<Boolean> _sprintEnableStanding = Unmodified("move.sprint.enable.ground").comment("Allow sprinting on the ground while standing. If disabled, pressing the sprint key on ground will attempt to activate running instead.");
 
