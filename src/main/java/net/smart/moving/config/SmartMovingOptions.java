@@ -52,6 +52,11 @@ public class SmartMovingOptions extends SmartMovingClientConfig
 
 	public final Property<Boolean> _climbJumpBackHeadOnGrab = Unmodified("move.jump.climb.back.head.on.grab").singular().comment("Whether pressing or not pressing the grab button while climb jumping back results in a head jump").section();
 
+	public final Property<String> _sprintKeyReleaseAction = String().defaults("run").key("move.sprint.key.release.action").comment("Determines what should happen when the sprint key is released (possible values are \"run\" and \"walk\")").section();
+	
+	public final Property<Boolean> _runOnSprintRelease = _sprintKeyReleaseAction.is("run").and(_run);
+	public final Property<Boolean> _walkOnSprintRelease = _sprintKeyReleaseAction.is("walk").andNot(_runOnSprintRelease);
+	
 	public final Property<Boolean> _displayExhaustionBar = Unmodified("move.gui.exhaustion.bar").singular().comment("Whether to display the exhaustion bar in the game overlay").section();
 	public final Property<Boolean> _displayJumpChargeBar = Unmodified("move.gui.jump.charge.bar").singular().comment("Whether to display the jump charge bar in the game overlay");
 

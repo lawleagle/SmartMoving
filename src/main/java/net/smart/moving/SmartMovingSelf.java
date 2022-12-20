@@ -2638,11 +2638,17 @@ public class SmartMovingSelf extends SmartMoving implements ISmartMovingSelf
 
 		if(isGroundSprinting && !wasGroundSprinting)
 		{
-			wasRunningWhenSprintStarted = Config._sprintAlwaysRun.value || sp.isSprinting();
+			wasRunningWhenSprintStarted = sp.isSprinting();
 			sp.setSprinting(isStandupSprintingOrRunning());
 		}
 		else if(wasGroundSprinting && !isGroundSprinting)
-			sp.setSprinting(wasRunningWhenSprintStarted);
+		{
+			sp.setSprinting(Options._runOnSprintRelease.value || wasRunningWhenSprintStarted);
+		}
+		if(Options._walkOnSprintRelease.value && sprintButton.StopPressed)
+		{
+			sp.setSprinting(false);
+		}
 
 		wouldIsSneaking =
 			wouldWantSneak &&
