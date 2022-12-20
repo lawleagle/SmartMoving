@@ -2627,8 +2627,10 @@ public class SmartMovingSelf extends SmartMoving implements ISmartMovingSelf
 		boolean isFlyingSprinting = canAllSprint && isFlying;
 		boolean isClimbSprinting = canAnySprint && isClimbing && isClimbSprintSpeed;
 
+		boolean standing = sp.onGround && !isSliding && !isCrawling;
+		
 		isFast =
-			isGroundSprinting ||
+			(isGroundSprinting && (!standing || Config._sprintEnableStanding.value)) ||
 			isClimbSprinting ||
 			isSwimSprinting ||
 			isDiveSprinting ||
