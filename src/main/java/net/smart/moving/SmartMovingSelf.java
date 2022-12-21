@@ -2249,6 +2249,18 @@ public class SmartMovingSelf extends SmartMoving implements ISmartMovingSelf
 			multiPlayerInitialized = 5;
 		}
 	}
+	
+	public void tickEssentialInput() {
+		toggleButton.update(Options.keyBindConfigToggle);
+		
+		if(toggleButton.StartPressed)
+		{
+			if(Config == Options)
+				Config.toggle();
+			else
+				SmartMovingPacketStream.sendConfigChange(SmartMovingComm.instance);
+		}
+	}
 
 	public void updateEntityActionState(boolean startSleeping)
 	{
@@ -2263,17 +2275,8 @@ public class SmartMovingSelf extends SmartMoving implements ISmartMovingSelf
 		boolean isLevitating = sp.capabilities.isFlying && !isFlying;
 		boolean isRunning = isRunning();
 
-		toggleButton.update(Options.keyBindConfigToggle);
 		speedIncreaseButton.update(Options.keyBindSpeedIncrease);
 		speedDecreaseButton.update(Options.keyBindSpeedDecrease);
-
-		if(toggleButton.StartPressed)
-		{
-			if(Config == Options)
-				Config.toggle();
-			else
-				SmartMovingPacketStream.sendConfigChange(SmartMovingComm.instance);
-		}
 
 		if(Config.isUserSpeedEnabled() && !Config.isUserSpeedAlwaysDefault() && (speedIncreaseButton.StartPressed || speedDecreaseButton.StartPressed))
 		{
