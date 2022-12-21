@@ -1763,11 +1763,12 @@ public class SmartMovingSelf extends SmartMoving implements ISmartMovingSelf
 		if(Config.enabled)
 		{
 			float perspectiveFactor = landMovementFactor;
+			if(sp.isSprinting())
+				perspectiveFactor /= 1.3F;
+			perspectiveFactor = 0.1f + ((landMovementFactor - 0.1f) * Options._perspectiveSpeedFactor.value);
+			
 			if(isFast || isSprintJump || isRunning())
 			{
-				if(sp.isSprinting())
-					perspectiveFactor /= 1.3F;
-
 				if(isFast || isSprintJump)
 				{
 					perspectiveFactor *= Options._perspectiveSprintFactor.value;
@@ -1776,6 +1777,10 @@ public class SmartMovingSelf extends SmartMoving implements ISmartMovingSelf
 				{
 					perspectiveFactor *= 1.3F * Options._perspectiveRunFactor.value;
 				}
+			}
+			
+			if(Options._perspectiveMaxFactor.value >= 1) {
+				perspectiveFactor = Math.min(perspectiveFactor, Options._perspectiveMaxFactor.value / 10f);
 			}
 
 			if(fadingPerspectiveFactor != -1)
