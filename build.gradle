@@ -250,7 +250,7 @@ if(project.hasProperty("customArchiveBaseName") && customArchiveBaseName) {
 else {
     archivesBaseName = modId
 }
-archivesBaseName += "-mc" + minecraftVersion
+archivesBaseName += "-" + minecraftVersion
 
 minecraft {
     version = minecraftVersion + "-" + forgeVersion + "-" + minecraftVersion
@@ -668,7 +668,7 @@ publishing {
             }
 
             groupId = mavenGroupId
-            artifactId = mavenArtifactId + "-mc" + minecraftVersion
+            artifactId = mavenArtifactId + "-" + minecraftVersion
             version = modVersion
 
             // remove extra garbage from minecraft and minecraftDeps configuration
