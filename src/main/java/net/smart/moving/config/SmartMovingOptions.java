@@ -41,9 +41,9 @@ public class SmartMovingOptions extends SmartMovingClientConfig
 
 	public final Property<Float> _perspectiveFadeFactor = PositiveFactor("move.perspective.fade.factor").values(0.5F, 0.1F, 1F).comment("Fading speed factor between the different perspectives (>= 0.1, <= 1, set to '1' to switch off)").book("Viewpoint perspective", "Below you find the options to manipulate the viewpoint perspective");
 	public final Property<Float> _perspectiveSpeedFactor = Float("move.perspective.speed.factor").defaults(1F).comment("Movement speed-based perspective factor (set to '0' to switch off)");
+	public final Property<Float> _perspectiveSpeedFactorMax = PositiveFactor("move.perspective.speed.factor.max").defaults(0F).comment("Maximum movement speed-based FOV change. Setting this to x means the allowed range is [1-x, 1+x]. (>= 0, set to '0' to uncap)");
 	public final Property<Float> _perspectiveRunFactor = Float("move.perspective.run.factor").key("move.run.perspective.factor", _pre_sm_2_1).defaults(1F).comment("Standard sprinting perspective (set to '0' to switch off)");
 	public final Property<Float> _perspectiveSprintFactor = Float("move.perspective.sprint.factor").key("move.sprint.perspective.factor", _pre_sm_2_1).defaults(1.5F).comment("Smart on ground sprinting perspective (set to '0' to switch off)");
-	public final Property<Float> _perspectiveMaxFactor = Float("move.perspective.max.factor").defaults(0F).comment("Maximum FOV multiplier (>= 1 when active, set to '0' to uncap)");
 
 
 

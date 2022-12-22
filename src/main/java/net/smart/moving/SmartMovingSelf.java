@@ -1769,6 +1769,9 @@ public class SmartMovingSelf extends SmartMoving implements ISmartMovingSelf
 				perspectiveFactor /= 1.3F;
 			}
 			perspectiveFactor = 0.1f + ((perspectiveFactor - 0.1f) * Options._perspectiveSpeedFactor.value);
+			if(Options._perspectiveSpeedFactorMax.value > 0) {
+				perspectiveFactor = MathHelper.clamp_float(perspectiveFactor, 0.1f - Options._perspectiveSpeedFactorMax.value * 0.1f, 0.1f + Options._perspectiveSpeedFactorMax.value * 0.1f);
+			}
 			if(sp.isSprinting()) {
 				perspectiveFactor *= 1.3F;
 			}
@@ -1786,10 +1789,6 @@ public class SmartMovingSelf extends SmartMoving implements ISmartMovingSelf
 				{
 					perspectiveFactor *= 1.3F * Options._perspectiveRunFactor.value;
 				}
-			}
-
-			if(Options._perspectiveMaxFactor.value >= 1) {
-				perspectiveFactor = Math.min(perspectiveFactor, Options._perspectiveMaxFactor.value / 10f);
 			}
 
 			if(fadingPerspectiveFactor != -1)
