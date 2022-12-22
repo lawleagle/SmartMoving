@@ -2263,6 +2263,45 @@ public class SmartMovingSelf extends SmartMoving implements ISmartMovingSelf
 			else
 				SmartMovingPacketStream.sendConfigChange(SmartMovingComm.instance);
 		}
+		
+		if(!isActive()) {
+			resetState();
+		}
+	}
+	
+	private void resetState() {
+		resetHeightOffset();
+		
+		this.isSlow = false;
+		this.isFast = false;
+        
+		this.isClimbing = false;
+		this.isHandsVineClimbing = false;
+		this.isFeetVineClimbing = false;
+        
+		this.isClimbJumping = false;
+		this.isClimbBackJumping = false;
+		this.isWallJumping = false;
+		this.isClimbCrawling = false;
+		this.isCrawlClimbing = false;
+		this.isCeilingClimbing = false;
+		this.isRopeSliding = false;
+        
+		this.isDipping = false;
+		this.isSwimming = false;
+		this.isDiving = false;
+		this.isLevitating = false;
+		this.isHeadJumping = false;
+		this.isCrawling = false;
+		this.isSliding = false;
+		this.isFlying = false;
+        
+		this.actualHandsClimbType = 0;
+		this.actualFeetClimbType = 0;
+        
+		this.angleJumpType = 0;
+        
+		this.heightOffset = 0;
 	}
 
 	public void updateEntityActionState(boolean startSleeping)
