@@ -1787,7 +1787,7 @@ public class SmartMovingSelf extends SmartMoving implements ISmartMovingSelf
 					perspectiveFactor *= 1.3F * Options._perspectiveRunFactor.value;
 				}
 			}
-			
+
 			if(Options._perspectiveMaxFactor.value >= 1) {
 				perspectiveFactor = Math.min(perspectiveFactor, Options._perspectiveMaxFactor.value / 10f);
 			}
@@ -2252,7 +2252,7 @@ public class SmartMovingSelf extends SmartMoving implements ISmartMovingSelf
 	}
 	
 	public void tickEssential() {
-		isActive = !Compat.isStarMinerGravitized(sp) && !Compat.isOnCuchazShip(sp);
+		isActive = !Compat.isBlockedByIncompatibility(sp);
 		
 		toggleButton.update(Options.keyBindConfigToggle);
 		
