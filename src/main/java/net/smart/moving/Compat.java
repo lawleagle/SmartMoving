@@ -4,6 +4,7 @@ import cpw.mods.fml.common.Loader;
 import cuchaz.ships.EntityShip;
 import cuchaz.ships.ShipLocator;
 import ganymedes01.etfuturum.api.elytra.IElytraPlayer;
+import jp.mc.ancientred.starminer.api.Gravity;
 import jp.mc.ancientred.starminer.api.GravityDirection;
 import jp.mc.ancientred.starminer.core.entity.ExtendedPropertyGravity;
 import net.minecraft.entity.Entity;
@@ -26,7 +27,11 @@ public class Compat {
 	}
 	
 	public static boolean isStarMinerGravitized(Entity player) {
-		return isStarMinerPresent && ExtendedPropertyGravity.getExtendedPropertyGravity(player).gravityDirection != GravityDirection.upTOdown_YN;
+		if(isStarMinerPresent) {
+			Gravity gravity = ExtendedPropertyGravity.getExtendedPropertyGravity(player);
+			return gravity.gravityDirection != GravityDirection.upTOdown_YN || gravity.isZeroGravity();
+		}
+		 return false;
 	}
 	
 	public static boolean isOnCuchazShip(Entity player) {
