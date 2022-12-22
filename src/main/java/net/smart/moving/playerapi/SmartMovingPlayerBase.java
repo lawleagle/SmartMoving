@@ -27,8 +27,6 @@ import net.minecraft.nbt.*;
 
 import net.smart.moving.*;
 
-import static net.smart.moving.SmartMovingContext.Config;
-
 public class SmartMovingPlayerBase extends ClientPlayerBase implements IEntityPlayerSP
 {
 	public static void registerPlayerBase()
@@ -50,14 +48,14 @@ public class SmartMovingPlayerBase extends ClientPlayerBase implements IEntityPl
 	@Override
 	public void beforeMoveEntity(double d, double d1, double d2)
 	{
-		if(!Config.enabled) return;
+		if(!moving.isActive()) return;
 		moving.beforeMoveEntity(d, d1, d2);
 	}
 
 	@Override
 	public void afterMoveEntity(double d, double d1, double d2)
 	{
-		if(!Config.enabled) return;
+		if(!moving.isActive()) return;
 		moving.afterMoveEntity(d, d1, d2);
 	}
 
@@ -70,7 +68,7 @@ public class SmartMovingPlayerBase extends ClientPlayerBase implements IEntityPl
 	@Override
 	public void beforeSleepInBedAt(int i, int j, int k)
 	{
-		if(!Config.enabled) return;
+		if(!moving.isActive()) return;
 		moving.beforeSleepInBedAt(i, j, k);
 	}
 
@@ -83,7 +81,7 @@ public class SmartMovingPlayerBase extends ClientPlayerBase implements IEntityPl
 	@Override
 	public float getBrightness(float f)
 	{
-		if(!Config.enabled) return localGetBrightness(f);
+		if(!moving.isActive()) return localGetBrightness(f);
 		return moving.getBrightness(f);
 	}
 
@@ -96,7 +94,7 @@ public class SmartMovingPlayerBase extends ClientPlayerBase implements IEntityPl
 	@Override
 	public int getBrightnessForRender(float f)
 	{
-		if(!Config.enabled) return localGetBrightnessForRender(f);
+		if(!moving.isActive()) return localGetBrightnessForRender(f);
 		return moving.getBrightnessForRender(f);
 	}
 
@@ -109,35 +107,35 @@ public class SmartMovingPlayerBase extends ClientPlayerBase implements IEntityPl
 	@Override
 	public boolean pushOutOfBlocks(double d, double d1, double d2)
 	{
-		if(!Config.enabled) return super.pushOutOfBlocks(d, d1, d2);
+		if(!moving.isActive()) return super.pushOutOfBlocks(d, d1, d2);
 		return moving.pushOutOfBlocks(d, d1, d2);
 	}
 
 	@Override
 	public void beforeOnUpdate()
 	{
-		if(!Config.enabled) return;
+		if(!moving.isActive()) return;
 		moving.beforeOnUpdate();
 	}
 
 	@Override
 	public void afterOnUpdate()
 	{
-		if(!Config.enabled) return;
+		if(!moving.isActive()) return;
 		moving.afterOnUpdate();
 	}
 
 	@Override
 	public void beforeOnLivingUpdate()
 	{
-		if(!Config.enabled) return;
+		if(!moving.isActive()) return;
 		moving.beforeOnLivingUpdate();
 	}
 
 	@Override
 	public void afterOnLivingUpdate()
 	{
-		if(!Config.enabled) return;
+		if(!moving.isActive()) return;
 		moving.afterOnLivingUpdate();
 	}
 
@@ -174,7 +172,7 @@ public class SmartMovingPlayerBase extends ClientPlayerBase implements IEntityPl
 	@Override
 	public void moveEntityWithHeading(float f, float f1)
 	{
-		if(!Config.enabled) {
+		if(!moving.isActive()) {
 			super.moveEntityWithHeading(f, f1);
 			return;
 		}
@@ -184,14 +182,14 @@ public class SmartMovingPlayerBase extends ClientPlayerBase implements IEntityPl
 	@Override
 	public boolean canTriggerWalking()
 	{
-		if(!Config.enabled) return super.canTriggerWalking();
+		if(!moving.isActive()) return super.canTriggerWalking();
 		return moving.canTriggerWalking();
 	}
 
 	@Override
 	public boolean isOnLadder()
 	{
-		if(!Config.enabled) return super.isOnLadder();
+		if(!moving.isActive()) return super.isOnLadder();
 		return moving.isOnLadderOrVine();
 	}
 
@@ -204,9 +202,9 @@ public class SmartMovingPlayerBase extends ClientPlayerBase implements IEntityPl
 	@Override
 	public void updateEntityActionState()
 	{
-		moving.tickEssentialInput();
+		moving.tickEssential();
 		
-		if(!Config.enabled) {
+		if(!moving.isActive()) {
 			localUpdateEntityActionState();
 			return;
 		}
@@ -240,7 +238,7 @@ public class SmartMovingPlayerBase extends ClientPlayerBase implements IEntityPl
 	@Override
 	public boolean isInsideOfMaterial(Material material)
 	{
-		if(!Config.enabled) return localIsInsideOfMaterial(material);
+		if(!moving.isActive()) return localIsInsideOfMaterial(material);
 		return moving.isInsideOfMaterial(material);
 	}
 
@@ -265,7 +263,7 @@ public class SmartMovingPlayerBase extends ClientPlayerBase implements IEntityPl
 	@Override
 	public boolean isSneaking()
 	{
-		if(!Config.enabled) return localIsSneaking();
+		if(!moving.isActive()) return localIsSneaking();
 		return moving.isSneaking();
 	}
 
@@ -278,7 +276,7 @@ public class SmartMovingPlayerBase extends ClientPlayerBase implements IEntityPl
 	@Override
 	public float getFOVMultiplier()
 	{
-		if(!Config.enabled) return localGetFOVMultiplier();
+		if(!moving.isActive()) return localGetFOVMultiplier();
 		return moving.getFOVMultiplier();
 	}
 
@@ -291,21 +289,21 @@ public class SmartMovingPlayerBase extends ClientPlayerBase implements IEntityPl
 	@Override
 	public void beforeSetPositionAndRotation(double d, double d1, double d2, float f, float f1)
 	{
-		if(!Config.enabled) return;
+		if(!moving.isActive()) return;
 		moving.beforeSetPositionAndRotation();
 	}
 
 	@Override
 	public void beforeGetSleepTimer()
 	{
-		if(!Config.enabled) return;
+		if(!moving.isActive()) return;
 		moving.beforeGetSleepTimer();
 	}
 
 	@Override
 	public void jump()
 	{
-		if(!Config.enabled) {
+		if(!moving.isActive()) {
 			super.jump();
 			return;
 		}

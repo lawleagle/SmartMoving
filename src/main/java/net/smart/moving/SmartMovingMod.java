@@ -85,6 +85,8 @@ public class SmartMovingMod
 			SmartMovingServer.initialize(new File("."), FMLCommonHandler.instance().getMinecraftServerInstance().getGameType().getID(), new SmartMovingConfig());
 
 		SmartCoreEventHandler.Add(new SmartMovingCoreEventHandler());
+		
+		Compat.init();
 	}
 
 	@EventHandler

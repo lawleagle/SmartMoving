@@ -46,6 +46,7 @@ public class SmartMovingSelf extends SmartMoving implements ISmartMovingSelf
 {
 	private boolean initialized;
 	private int multiPlayerInitialized;
+	private boolean isActive = true;
 	private int updateCounter;
 	private float distanceSwom;
 
@@ -2250,7 +2251,9 @@ public class SmartMovingSelf extends SmartMoving implements ISmartMovingSelf
 		}
 	}
 	
-	public void tickEssentialInput() {
+	public void tickEssential() {
+		isActive = !Compat.isStarMinerGravitized(sp);
+		
 		toggleButton.update(Options.keyBindConfigToggle);
 		
 		if(toggleButton.StartPressed)
@@ -3285,6 +3288,10 @@ public class SmartMovingSelf extends SmartMoving implements ISmartMovingSelf
 	private boolean isLevitating()
 	{
 		return !Config.isFlyingEnabled() && sp.capabilities.isFlying;
+	}
+	
+	public boolean isActive() {
+		return isActive && Config.enabled;
 	}
 
 	private Boolean forceIsSneaking;
