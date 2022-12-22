@@ -2252,7 +2252,7 @@ public class SmartMovingSelf extends SmartMoving implements ISmartMovingSelf
 	}
 	
 	public void tickEssential() {
-		isActive = !Compat.isStarMinerGravitized(sp);
+		isActive = !Compat.isStarMinerGravitized(sp) && !Compat.isOnCuchazShip(sp);
 		
 		toggleButton.update(Options.keyBindConfigToggle);
 		

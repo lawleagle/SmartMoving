@@ -33,6 +33,7 @@ if(!project.hasProperty("testMod")){
 	dependencies {
 		compile 'com.github.makamys:SmartRender:2.1:dev'
 		compileOnly files('gradlelibs/Starminer1710-0.9.9-stub.jar') // A jar with empty classes, just to avoid errors during build
+		compileOnly files('gradlelibs/shipsMod-v1.7.10-1.0.4-stub.jar') // A jar with empty classes, just to avoid errors during build
 	}
 } else {
 	jar {
