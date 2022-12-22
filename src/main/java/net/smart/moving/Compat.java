@@ -16,41 +16,68 @@ public class Compat {
 	private static boolean isShipsModPresent;
 	private static boolean isEtFuturumRequiemElytraPresent;
 	
-	public static void init() {
+	public static void init()
+	{
 		isStarMinerPresent = Loader.isModLoaded("modJ_StarMiner");
 		isShipsModPresent = Loader.isModLoaded("cuchaz.ships");
 		isEtFuturumRequiemElytraPresent = Loader.isModLoaded("etfuturum") && classExists("ganymedes01.etfuturum.api.elytra.IElytraPlayer");
 	}
 	
-	public static boolean isBlockedByIncompatibility(EntityPlayer sp) {
+	private static boolean classExists(String className)
+	{
+		return Compat.class.getClassLoader().getResourceAsStream(className.replaceAll("\\.", "/") + ".class") != null;
+	}
+	
+	public static boolean isBlockedByIncompatibility(EntityPlayer sp)
+	{
 		return isStarMinerGravitized(sp) || isOnCuchazShip(sp) || isElytraFlying(sp);
 	}
 	
-	public static boolean isStarMinerGravitized(Entity player) {
-		if(isStarMinerPresent) {
+	public static boolean isStarMinerGravitized(Entity player)
+	{
+		return isStarMinerPresent && StarMinerCompat.isGravitized(player);
+	}
+	
+	public static boolean isOnCuchazShip(Entity player)
+	{
+		return isShipsModPresent && ShipsCompat.isOnShip(player);
+	}
+	
+	public static boolean isElytraFlying(Entity player)
+	{
+		return isEtFuturumRequiemElytraPresent && EtFuturumRequiemElytraCompat.isElytraFlying(player);
+	}
+	
+	private static class StarMinerCompat
+	{
+		public static boolean isGravitized(Entity player)
+		{
 			Gravity gravity = ExtendedPropertyGravity.getExtendedPropertyGravity(player);
 			return gravity.gravityDirection != GravityDirection.upTOdown_YN || gravity.isZeroGravity();
 		}
-		 return false;
 	}
 	
-	public static boolean isOnCuchazShip(Entity player) {
-		if(isShipsModPresent) {
-			for (EntityShip ship : ShipLocator.getFromEntityLocation(player)) {
-				if (ship.getCollider().isEntityAboard(player)) {
+	private static class ShipsCompat
+	{
+		public static boolean isOnShip(Entity player)
+		{
+			for (EntityShip ship : ShipLocator.getFromEntityLocation(player))
+			{
+				if (ship.getCollider().isEntityAboard(player))
+				{
 					return true;
 				}
 			}
+			return false;
+		}	
+	}
+	
+	private static class EtFuturumRequiemElytraCompat
+	{
+		public static boolean isElytraFlying(Entity player)
+		{
+			return ((IElytraPlayer)player).etfu$isElytraFlying();
 		}
-		return false;
-	}
-	
-	public static boolean isElytraFlying(Entity player) {
-		return isEtFuturumRequiemElytraPresent && ((IElytraPlayer)player).etfu$isElytraFlying();
-	}
-	
-	private static boolean classExists(String className) {
-		return Compat.class.getClassLoader().getResourceAsStream(className.replaceAll("\\.", "/") + ".class") != null;
 	}
 
 }
