@@ -1841,14 +1841,15 @@ public class SmartMovingSelf extends SmartMoving implements ISmartMovingSelf
 
 	public void handleJumping()
 	{
+		jumpPending = false;
+		
 		if(blockJumpTillButtonRelease && !esp.movementInput.jump)
 			blockJumpTillButtonRelease = false;
 
 		if(isSwimming || isDiving)
 			return;
 
-		boolean jump = jumpAvoided && sp.onGround && isp.getIsJumpingField() && !sp.isInWater() && !sp.handleLavaMovement();
-
+		boolean jump = jumpAvoided && isp.getIsJumpingField() && !sp.isInWater() && !sp.handleLavaMovement();
 		jumpMotionX = sp.motionX;
 		jumpMotionZ = sp.motionZ;
 
@@ -2305,7 +2306,10 @@ public class SmartMovingSelf extends SmartMoving implements ISmartMovingSelf
 
 	public void updateEntityActionState(boolean startSleeping)
 	{
-		jumpAvoided = false;
+		if(!jumpPending)
+		{
+			jumpAvoided = false;
+		}
 
 		prevMaxExhaustionForAction = maxExhaustionForAction;
 		prevMaxExhaustionToStartAction = maxExhaustionToStartAction;
@@ -3079,6 +3083,7 @@ public class SmartMovingSelf extends SmartMoving implements ISmartMovingSelf
 	private boolean wasRunningWhenSprintStarted;
 
 	private boolean jumpAvoided;
+	private boolean jumpPending;
 
 
 	private int climbIntoCount;
@@ -3244,6 +3249,7 @@ public class SmartMovingSelf extends SmartMoving implements ISmartMovingSelf
 	public void jump()
 	{
 		jumpAvoided = true;
+		jumpPending = true;
 	}
 
 	public void writeEntityToNBT(NBTTagCompound nBTTagCompound)
