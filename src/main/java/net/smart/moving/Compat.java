@@ -7,6 +7,7 @@ import ganymedes01.etfuturum.api.elytra.IElytraPlayer;
 import jp.mc.ancientred.starminer.api.Gravity;
 import jp.mc.ancientred.starminer.api.GravityDirection;
 import jp.mc.ancientred.starminer.core.entity.ExtendedPropertyGravity;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 
@@ -14,13 +15,15 @@ public class Compat {
 
 	private static boolean isStarMinerPresent;
 	private static boolean isShipsModPresent;
+	private static boolean isEtFuturumRequiemPresent;
 	private static boolean isEtFuturumRequiemElytraPresent;
 	
 	public static void init()
 	{
 		isStarMinerPresent = Loader.isModLoaded("modJ_StarMiner");
 		isShipsModPresent = Loader.isModLoaded("cuchaz.ships");
-		isEtFuturumRequiemElytraPresent = Loader.isModLoaded("etfuturum") && classExists("ganymedes01.etfuturum.api.elytra.IElytraPlayer");
+		isEtFuturumRequiemPresent = Loader.isModLoaded("etfuturum");
+		isEtFuturumRequiemElytraPresent = isEtFuturumRequiemPresent && classExists("ganymedes01.etfuturum.api.elytra.IElytraPlayer");
 	}
 	
 	private static boolean classExists(String className)
@@ -30,7 +33,7 @@ public class Compat {
 	
 	public static boolean isBlockedByIncompatibility(EntityPlayer sp)
 	{
-		return isStarMinerGravitized(sp) || isOnCuchazShip(sp) || isElytraFlying(sp);
+		return isStarMinerGravitized(sp) || isOnCuchazShip(sp) || isElytraFlying(sp) || isSpectator(sp);
 	}
 	
 	public static boolean isStarMinerGravitized(Entity player)
@@ -46,6 +49,11 @@ public class Compat {
 	public static boolean isElytraFlying(Entity player)
 	{
 		return isEtFuturumRequiemElytraPresent && EtFuturumRequiemElytraCompat.isElytraFlying(player);
+	}
+	
+	public static boolean isSpectator(Entity player)
+	{
+		return isEtFuturumRequiemPresent && Minecraft.getMinecraft().playerController.currentGameType.getID() == 3;
 	}
 	
 	private static class StarMinerCompat
