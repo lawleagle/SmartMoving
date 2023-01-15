@@ -14,7 +14,7 @@ if(!project.hasProperty("testMod")){
 		
 		compileOnly deobf("https://b2.mcarchive.net/file/mcarchive/7c89d50fb4b9d8a7c9de628ce9b7119c40819d706fe2426c0960883c56da210b/Starminer1710-0.9.9.jar")
 		compileOnly deobfMaven(curseMaven, "curse.maven:ships-mod-226731:2254977")
-		compileOnly deobf('https://cdn.discordapp.com/attachments/797544581049745449/1028838053952901170/Et_Futurum_Requiem-2.4.1-nomixin.jar')
+		compileOnly deobf('https://github.com/Roadhog360/Et-Futurum-Requiem/releases/download/2.4.2/Et_Futurum_Requiem-2.4.2-nomixin.jar')
 	}
 } else {
 	project.coreModClass = ""
