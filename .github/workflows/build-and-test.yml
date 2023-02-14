@@ -32,3 +32,8 @@ jobs:
 
     - name: Build the mod
       run: ./gradlew build
+
+    - uses: actions/upload-artifact@v3
+      with:
+        name: Package
+        path: build/libs
