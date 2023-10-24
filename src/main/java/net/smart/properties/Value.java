@@ -18,10 +18,10 @@
 package net.smart.properties;
 
 import java.io.*;
-import java.lang.reflect.*;
 import java.util.*;
 
-import net.smart.utilities.*;
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.input.Mouse;
 
 public class Value<T>
 {
@@ -624,24 +624,15 @@ public class Value<T>
 	public final static String Null = "null";
 	private final static List<String> _allkeys = new LinkedList<String>();
 
-	public final static Class<?> keyboard = Reflect.LoadClass(Value.class, new Name("org.lwjgl.input.Keyboard"), false);
-	public final static Class<?> mouse = Reflect.LoadClass(Value.class, new Name("org.lwjgl.input.Mouse"), false);
-
-	public final static Method _getKeyName = keyboard != null ? Reflect.GetMethod(keyboard, new Name("getKeyName"), int.class) : null;
-	public final static Method _getKeyIndex = keyboard != null ? Reflect.GetMethod(keyboard, new Name("getKeyIndex"), String.class) : null;
-
-	public final static Method _getButtonName = mouse != null ? Reflect.GetMethod(mouse, new Name("getButtonName"), int.class) : null;
-	public final static Method _getButtonIndex = mouse != null ? Reflect.GetMethod(mouse, new Name("getButtonIndex"), String.class) : null;
-
 	public static String toKeyName(Integer keyCode)
 	{
 		if(keyCode == null)
 			return null;
 
 		if(keyCode >= 0)
-			return (String)Reflect.Invoke(_getKeyName, null, keyCode);
+			return Keyboard.getKeyName(keyCode);
 
-		return (String)Reflect.Invoke(_getButtonName, null, keyCode + 100);
+		return Mouse.getButtonName(keyCode + 100);
 	}
 
 	private static Integer toKeyCode(String keyName)
@@ -650,11 +641,11 @@ public class Value<T>
 			return null;
 
 		keyName = keyName.toUpperCase();
-		int keyCode = (Integer)Reflect.Invoke(_getKeyIndex, null, keyName);
+		int keyCode = Keyboard.getKeyIndex(keyName);
 		if(keyCode > 0)
 			return keyCode;
 
-		keyCode = (Integer)Reflect.Invoke(_getButtonIndex, null, keyName);
+		keyCode = Mouse.getButtonIndex(keyName);
 		if(keyCode >= 0)
 			return keyCode - 100;
 		return null;
