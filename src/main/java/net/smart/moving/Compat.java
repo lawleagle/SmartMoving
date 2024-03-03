@@ -84,7 +84,7 @@ public class Compat {
 	{
 		public static boolean isElytraFlying(Entity player)
 		{
-			return ((IElytraPlayer)player).etfu$isElytraFlying();
+			return player instanceof IElytraPlayer && ((IElytraPlayer)player).etfu$isElytraFlying();
 		}
 	}
 
