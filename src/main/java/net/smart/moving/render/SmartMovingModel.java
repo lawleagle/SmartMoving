@@ -475,7 +475,7 @@ public class SmartMovingModel extends SmartRenderContext
 		else if(isFlying)
 		{
 			float distance = totalDistance * 0.08F;
-			float walkFactor = Factor(currentSpeed, 0F, 1);
+			float walkFactor = Factor(currentSpeed, 0F, 1F);
 			float standFactor = Factor(currentSpeed, 1F, 0F);
 			float time = totalTime * 0.15F;
 			float verticalAngle = isJump ? Math.abs(currentVerticalAngle) : currentVerticalAngle;
@@ -490,11 +490,8 @@ public class SmartMovingModel extends SmartRenderContext
 			bipedRightArm.rotationOrder = ModelRotationRenderer.XZY;
 			bipedLeftArm.rotationOrder = ModelRotationRenderer.XZY;
 
-			bipedRightArm.rotateAngleY = (MathHelper.cos(time) * Sixteenth) * standFactor;
-			bipedLeftArm.rotateAngleY = (MathHelper.cos(time) * Sixteenth) * standFactor;
-
-			bipedRightArm.rotateAngleZ = (MathHelper.cos(distance + Half) * Sixtyfourth + (Half - Sixteenth)) * walkFactor + Quarter * standFactor;
-			bipedLeftArm.rotateAngleZ = (MathHelper.cos(distance) * Sixtyfourth - (Half - Sixteenth)) * walkFactor - Quarter * standFactor;
+			bipedRightArm.rotateAngleZ = (MathHelper.cos(distance + Half) * Sixtyfourth + (Half - Sixteenth)) * walkFactor + Sixtyfourth * 0.8f + MathHelper.cos(time * 0.7f) * Sixtyfourth * 0.8f * standFactor;
+			bipedLeftArm.rotateAngleZ = (MathHelper.cos(distance) * Sixtyfourth - (Half - Sixteenth)) * walkFactor - Sixtyfourth * 0.8f - MathHelper.cos(time * 0.7f) * Sixtyfourth * 0.8f * standFactor;
 
 			bipedRightLeg.rotateAngleX = MathHelper.cos(distance) * Sixtyfourth * walkFactor + MathHelper.cos(time + Half) * Sixtyfourth * standFactor;
 			bipedLeftLeg.rotateAngleX = MathHelper.cos(distance + Half) * Sixtyfourth * walkFactor + MathHelper.cos(time) * Sixtyfourth * standFactor;
