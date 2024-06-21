@@ -30,11 +30,12 @@ import cpw.mods.fml.common.network.*;
 import cpw.mods.fml.common.network.FMLNetworkEvent.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.network.*;
+import net.smart.Tags;
 import net.smart.core.*;
 import net.smart.moving.config.*;
 import net.smart.utilities.*;
 
-@Mod(modid = "SmartMoving", name = "Smart Moving", version = "15.6", dependencies = "required-after:PlayerAPI@[1.3,);required-after:SmartRender@[2.1,)")
+@Mod(modid = "SmartMoving", name = "Smart Moving", version = Tags.VERSION, dependencies = "required-after:PlayerAPI@[1.3,);required-after:SmartRender@[2.1,)")
 public class SmartMovingMod
 {
 	protected static String ModComVersion = "2.3.1";
@@ -85,7 +86,7 @@ public class SmartMovingMod
 			SmartMovingServer.initialize(new File("."), FMLCommonHandler.instance().getMinecraftServerInstance().getGameType().getID(), new SmartMovingConfig());
 
 		SmartCoreEventHandler.Add(new SmartMovingCoreEventHandler());
-		
+
 		Compat.init();
 	}
 

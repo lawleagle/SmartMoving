@@ -7,5 +7,5 @@
   "credits": "_DarKShaM_, Cassiobsk8, Dunncann for translations",
   "url": "https://github.com/makamys/SmartMoving",
   "authors": [ "Divisor" ],
-  "dependencies": [ "SmartRender", "SmartCore" ]
+  "dependencies": [ ]
 }]

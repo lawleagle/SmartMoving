@@ -1,5 +1,32 @@
-// Add any additional repositories for your dependencies here
+// Add any additional repositories for your dependencies here.
 
 repositories {
-
+    mavenLocal()
+    maven {
+        name = "forge"
+        url = "https://mvn.falsepattern.com/forge"
+    }
+    maven {
+        name = "sonatype"
+        url = "https://oss.sonatype.org/content/repositories/snapshots/"
+    }
+    maven {
+        name = "Scala CI dependencies"
+        url = "https://repo1.maven.org/maven2/"
+    }
+    maven {
+        name = "jitpack"
+        url = "https://mvn.falsepattern.com/jitpack/"
+    }
+    maven {
+        name = "mavenpattern"
+        url = "https://mvn.falsepattern.com/releases/"
+    }
+    maven {
+        name = "usrv"
+        url = "https://mvn.falsepattern.com/usrv/"
+    }
+	maven { 
+        url = 'https://jitpack.io' 
+    }
 }
