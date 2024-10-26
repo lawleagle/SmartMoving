@@ -35,9 +35,9 @@
  */
 dependencies {
     runtimeOnlyNonPublishable 'com.github.GTNewHorizons:NotEnoughItems:2.5.4-GTNH:dev'
-    devOnlyNonPublishable 'com.github.lawleagle:SmartRender:2.1-law'
-    devOnlyNonPublishable 'com.github.lawleagle:playerapi:1.4.1-law'
-    devOnlyNonPublishable 'com.github.lawleagle:renderplayerapi:1.4-law'
+    devOnlyNonPublishable files('jars/PlayerAPI-1.4.1-manu-dev.jar')
+    devOnlyNonPublishable files('jars/RenderPlayerAPI-1.4-manu-dev.jar')
+    devOnlyNonPublishable files('jars/SmartRender-2.1-manu-dev')
 
     compileOnly deobf("https://b2.mcarchive.net/file/mcarchive/7c89d50fb4b9d8a7c9de628ce9b7119c40819d706fe2426c0960883c56da210b/Starminer1710-0.9.9.jar")
     compileOnly deobfMaven("https://cursemaven.com/", "curse.maven:ships-mod-226731:2254977")
