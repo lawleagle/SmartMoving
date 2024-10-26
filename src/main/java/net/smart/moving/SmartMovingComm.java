@@ -145,22 +145,22 @@ public class SmartMovingComm extends SmartMovingContext implements IPacketReceiv
 
 	public static boolean processBlockCode(String text)
 	{
-		if(!text.startsWith("§0§1") || !text.endsWith("§f§f"))
+		if(!text.startsWith("Â§0Â§1") || !text.endsWith("Â§fÂ§f"))
 			return false;
 
 		String codes = text.substring(4, text.length() - 4);
-		processBlockCode(codes, "§0", Options._baseClimb, "standard");
-		processBlockCode(codes, "§1", Options._freeClimb);
-		processBlockCode(codes, "§2", Options._ceilingClimbing);
-		processBlockCode(codes, "§3", Options._swim);
-		processBlockCode(codes, "§4", Options._dive);
-		processBlockCode(codes, "§5", Options._crawl);
-		processBlockCode(codes, "§6", Options._slide);
-		processBlockCode(codes, "§7", Options._fly);
-		processBlockCode(codes, "§8", Options._jumpCharge);
-		processBlockCode(codes, "§9", Options._headJump);
-		processBlockCode(codes, "§a", Options._angleJumpSide);
-		processBlockCode(codes, "§b", Options._angleJumpBack);
+		processBlockCode(codes, "Â§0", Options._baseClimb, "standard");
+		processBlockCode(codes, "Â§1", Options._freeClimb);
+		processBlockCode(codes, "Â§2", Options._ceilingClimbing);
+		processBlockCode(codes, "Â§3", Options._swim);
+		processBlockCode(codes, "Â§4", Options._dive);
+		processBlockCode(codes, "Â§5", Options._crawl);
+		processBlockCode(codes, "Â§6", Options._slide);
+		processBlockCode(codes, "Â§7", Options._fly);
+		processBlockCode(codes, "Â§8", Options._jumpCharge);
+		processBlockCode(codes, "Â§9", Options._headJump);
+		processBlockCode(codes, "Â§a", Options._angleJumpSide);
+		processBlockCode(codes, "Â§b", Options._angleJumpBack);
 		return true;
 	}
 
